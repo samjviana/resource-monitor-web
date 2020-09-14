@@ -1,0 +1,129 @@
+#rm-sidebar .sidebar {
+    left: 0;
+    width: 275px;
+    transition: all 0.3s;
+    z-index: 1020;
+    height: 100%;
+    position: fixed;
+    color: white;
+    background-color: #1e88e5;
+}
+
+#rm-sidebar .sidebar:not(.active) {
+    margin-left: -275px;
+}
+
+#rm-sidebar .sidebar .sidebar-header {
+    margin-top: 15px;
+    width: 325px;
+    border-radius: 0px 30px 30px 0px;
+    background-color: #1976d2;
+}
+
+#rm-sidebar .sidebar .sidebar-header h3 {
+    width: 275px;
+}
+
+#rm-sidebar .sidebar .sidebar-header .toggler {
+    cursor: pointer;
+    width: 50px;
+    border-radius: 0px 30px 30px 0px;
+    transition: all 0.3s;
+}
+
+#rm-sidebar input:focus~ .form-notch .form-notch-leading,
+#rm-sidebar input:focus~ .form-notch .form-notch-middle,
+#rm-sidebar input:focus~ .form-notch .form-notch-trailing {
+    border-bottom: 1px solid #00acc1 !important;
+}
+
+#rm-sidebar .form-outline .form-control.active~.form-label,
+#rm-sidebar .form-outline .form-control:focus~.form-label {
+    top: -7px;
+}
+
+#rm-sidebar .form-outline {
+    margin-top: 30px;
+}
+
+#rm-sidebar .form-outline .form-control~.form-notch div {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+#rm-sidebar .scrollbar {
+    overflow-y: auto;
+}
+
+#rm-sidebar .scrollbar::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: white ;
+    border-radius: 10px;
+}
+
+#rm-sidebar .scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#rm-sidebar .scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: none;
+    background-color: #1565c0  ;
+}
+
+#rm-sidebar li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: white;
+}
+
+#rm-sidebar li a:hover,
+#rm-sidebar li.active a:hover {
+    color: #1565C0;
+    background: white;
+    cursor: pointer;
+}
+
+#rm-sidebar li.active > a,
+a[aria-expanded="true"] {
+    color: white;
+    background: #1976D2;
+}
+
+#rm-sidebar .green-text {
+    color: #4caf50;
+}
+
+#rm-sidebar .red-text {
+    color: #f44336;
+}
+
+
+#rm-sidebar .overlay{
+    position: fixed;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+#rm-sidebar .overlay.on{
+    visibility: visible;
+    opacity: 1;
+}
+
+#rm-sidebar .overlay.off{
+    visibility: hidden;
+    opacity: 0;
+}

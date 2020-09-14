@@ -1,0 +1,80 @@
+#rm-cpu-card .dropdown button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border: none;
+    line-height: initial !important;
+    overflow: hidden;
+    outline: none;
+    color: inherit;
+}
+
+#rm-cpu-card .dropdown-toggle {
+    display: block;
+    cursor: pointer;
+}
+
+#rm-cpu-card .dropdown-hide {
+    display: none;
+    cursor: default;
+}
+
+#rm-cpu-card .dropdown-item {
+    cursor: pointer;
+}
+
+#rm-cpu-card .dropdown-menu {
+    transform: translate3d(0, 32px, 0);
+}
+
+#rm-cpu-card .disabled,
+#rm-cpu-card .disabled button {
+    color: #BBBBBB;
+}
+
+@media (max-width: 575px) {
+    #rm-cpu-card .card {
+        height: 450px;
+    }
+}
+
+@media (min-width: 576px) {
+    #rm-cpu-card .card {
+        height: 280px;
+    }
+}
+
+#rm-cpu-card .donut-inner h5 {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#rm-cpu-card .donut-inner span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    font-size: 13px;
+}
+
+#rm-cpu-card .chart {
+    position: relative;
+    display: inline-block;
+}
+
+#rm-cpu-card .dropdown-toggle::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#rm-cpu-card a,
+#rm-cpu-card a:hover,
+#rm-cpu-card a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}

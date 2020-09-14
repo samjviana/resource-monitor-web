@@ -1,0 +1,41 @@
+#rm-storage-card .disabled {
+    color: #BBBBBB;
+}
+
+#rm-storage-card #data.card {
+    overflow: hidden;
+}
+
+#rm-storage-card .storage-body {
+    overflow-y: scroll;
+}
+
+#rm-storage-card .storage-body::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: white ;
+    border-radius: 10px;
+}
+
+#rm-storage-card .storage-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#rm-storage-card .storage-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: none;
+    background-color: #1565c0  ;
+}
+
+@media (max-width: 575px) {
+    #rm-storage-card #data.card,
+    #rm-storage-card #loader.card {
+        height: 450px;
+    }
+}
+
+@media (min-width: 576px) {
+    #rm-storage-card #data.card,
+    #rm-storage-card #loader.card {
+            height: 280px;
+    }
+}

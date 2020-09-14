@@ -1,0 +1,17 @@
+#rm-progressbar .progress {
+    border-radius: 100px;
+    background-color: #e7e8ea;
+    height: 14px;
+}
+
+#rm-progressbar .progress-bar {
+    border-radius: 100px;
+    transition: width 0.6s ease, background-color 0.3s 0.3s ease-in;
+}
+
+#rm-progressbar .storage .progress {
+    border-radius: 100px;
+    background-color: #e7e8ea;
+    height: 10px;
+}
+

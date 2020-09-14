@@ -1,0 +1,43 @@
+@import "rm-navbar.css";
+@import "rm-sidebar.css";
+@import "rm-tabs.css";
+@import "rm-cpu-card.css";
+@import "rm-gpu-card.css";
+@import "rm-ram-card.css";
+@import "rm-storage-card.css";
+@import "rm-progressbar.css";
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    padding-top: 66px;
+}
+
+.computer-data {
+    padding-bottom: 66px;
+}
+
+main {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+main.lockscroll {
+    overflow-y: hidden;
+    padding-right: 10px;
+}
+
+main::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: white ;
+}
+
+main::-webkit-scrollbar {
+    width: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+    box-shadow: none;
+    background-color: #1565c0  ;
+}

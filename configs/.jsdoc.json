@@ -1,0 +1,12 @@
+{
+    "templates": {
+        "referenceTitle": "Resource Monitor",
+        "collapse": true
+    },
+    "opts": {
+        "destination": "./docs/out/",
+        "encoding": "utf8",
+        "recurse": true,
+        "template": "./docs/template"
+    }
+}

@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      utils/tools.js - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+  <link type="text/css" rel="stylesheet" href="styles/collapse.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">
+      Resource Monitor
+    </h3>
+
+    
+
+    <h3>Classes</h3><ul><li id="Computer-nav"><a href="Computer.html">Computer</a><ul class='methods' aria-label='Methods'><li data-type="method" id="Computer-empty-nav"><a href="Computer.html#.empty">empty</a></li></ul></li><li id="Cpu-nav"><a href="Cpu.html">Cpu</a><ul class='methods' aria-label='Methods'><li data-type="method" id="Cpu-empty-nav"><a href="Cpu.html#.empty">empty</a></li></ul></li><li id="CpuReading-nav"><a href="CpuReading.html">CpuReading</a><ul class='methods' aria-label='Methods'><li data-type="method" id="CpuReading-empty-nav"><a href="CpuReading.html#.empty">empty</a></li></ul></li><li id="Gpu-nav"><a href="Gpu.html">Gpu</a><ul class='methods' aria-label='Methods'><li data-type="method" id="Gpu-empty-nav"><a href="Gpu.html#.empty">empty</a></li></ul></li><li id="GpuReading-nav"><a href="GpuReading.html">GpuReading</a><ul class='methods' aria-label='Methods'><li data-type="method" id="GpuReading-empty-nav"><a href="GpuReading.html#.empty">empty</a></li></ul></li><li id="Ram-nav"><a href="Ram.html">Ram</a><ul class='methods' aria-label='Methods'><li data-type="method" id="Ram-empty-nav"><a href="Ram.html#.empty">empty</a></li></ul></li><li id="RamReading-nav"><a href="RamReading.html">RamReading</a><ul class='methods' aria-label='Methods'><li data-type="method" id="RamReading-empty-nav"><a href="RamReading.html#.empty">empty</a></li></ul></li><li id="Storage-nav"><a href="Storage.html">Storage</a><ul class='methods' aria-label='Methods'><li data-type="method" id="Storage-empty-nav"><a href="Storage.html#.empty">empty</a></li></ul></li><li id="StorageReading-nav"><a href="StorageReading.html">StorageReading</a><ul class='methods' aria-label='Methods'><li data-type="method" id="StorageReading-empty-nav"><a href="StorageReading.html#.empty">empty</a></li></ul></li></ul><h3>Modules</h3><ul><li id="CpuCard-nav"><a href="module-CpuCard.html">CpuCard</a><ul class='members' aria-label='Members'><li data-type="member" id="CpuCard-_rmcpucard-nav"><a href="module-CpuCard.html#._rmcpucard">_rmcpucard</a></li><li data-type="member" id="CpuCard-bgInterval-nav"><a href="module-CpuCard.html#~bgInterval">bgInterval</a></li><li data-type="member" id="CpuCard-chart-nav"><a href="module-CpuCard.html#~chart">chart</a></li><li data-type="member" id="CpuCard-oldparameters-nav"><a href="module-CpuCard.html#~oldparameters">oldparameters</a></li><li data-type="member" id="CpuCard-parameters-nav"><a href="module-CpuCard.html#~parameters">parameters</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="CpuCard-chartBarColor-nav"><a href="module-CpuCard.html#~chartBarColor">chartBarColor</a></li><li data-type="method" id="CpuCard-chartOnStep-nav"><a href="module-CpuCard.html#~chartOnStep">chartOnStep</a></li><li data-type="method" id="CpuCard-computerChanged-nav"><a href="module-CpuCard.html#~computerChanged">computerChanged</a></li><li data-type="method" id="CpuCard-cpuChanged-nav"><a href="module-CpuCard.html#~cpuChanged">cpuChanged</a></li><li data-type="method" id="CpuCard-getCpu-nav"><a href="module-CpuCard.html#~getCpu">getCpu</a></li><li data-type="method" id="CpuCard-getCpuReading-nav"><a href="module-CpuCard.html#~getCpuReading">getCpuReading</a></li><li data-type="method" id="CpuCard-init-nav"><a href="module-CpuCard.html#~init">init</a></li><li data-type="method" id="CpuCard-toggleCard-nav"><a href="module-CpuCard.html#~toggleCard">toggleCard</a></li><li data-type="method" id="CpuCard-updateParameters-nav"><a href="module-CpuCard.html#~updateParameters">updateParameters</a></li></ul></li><li id="CustomEvents-nav"><a href="module-CustomEvents.html">CustomEvents</a><ul class='members' aria-label='Members'><li data-type="member" id="CustomEvents-computerchanged-nav"><a href="module-CustomEvents.html#.computerchanged">computerchanged</a></li><li data-type="member" id="CustomEvents-cpuchanged-nav"><a href="module-CustomEvents.html#.cpuchanged">cpuchanged</a></li><li data-type="member" id="CustomEvents-gpuchanged-nav"><a href="module-CustomEvents.html#.gpuchanged">gpuchanged</a></li><li data-type="member" id="CustomEvents-paramchanged-nav"><a href="module-CustomEvents.html#.paramchanged">paramchanged</a></li><li data-type="member" id="CustomEvents-sidebartoggled-nav"><a href="module-CustomEvents.html#.sidebartoggled">sidebartoggled</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="CustomEvents-triggerEvent-nav"><a href="module-CustomEvents.html#.triggerEvent">triggerEvent</a></li></ul></li><li id="GpuCard-nav"><a href="module-GpuCard.html">GpuCard</a><ul class='members' aria-label='Members'><li data-type="member" id="GpuCard-_rmgpucard-nav"><a href="module-GpuCard.html#._rmgpucard">_rmgpucard</a></li><li data-type="member" id="GpuCard-bgInterval-nav"><a href="module-GpuCard.html#~bgInterval">bgInterval</a></li><li data-type="member" id="GpuCard-chart-nav"><a href="module-GpuCard.html#~chart">chart</a></li><li data-type="member" id="GpuCard-oldparameters-nav"><a href="module-GpuCard.html#~oldparameters">oldparameters</a></li><li data-type="member" id="GpuCard-parameters-nav"><a href="module-GpuCard.html#~parameters">parameters</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="GpuCard-chartBarColor-nav"><a href="module-GpuCard.html#~chartBarColor">chartBarColor</a></li><li data-type="method" id="GpuCard-chartOnStep-nav"><a href="module-GpuCard.html#~chartOnStep">chartOnStep</a></li><li data-type="method" id="GpuCard-computerChanged-nav"><a href="module-GpuCard.html#~computerChanged">computerChanged</a></li><li data-type="method" id="GpuCard-getGpu-nav"><a href="module-GpuCard.html#~getGpu">getGpu</a></li><li data-type="method" id="GpuCard-getGpuReading-nav"><a href="module-GpuCard.html#~getGpuReading">getGpuReading</a></li><li data-type="method" id="GpuCard-gpuChanged-nav"><a href="module-GpuCard.html#~gpuChanged">gpuChanged</a></li><li data-type="method" id="GpuCard-init-nav"><a href="module-GpuCard.html#~init">init</a></li><li data-type="method" id="GpuCard-toggleCard-nav"><a href="module-GpuCard.html#~toggleCard">toggleCard</a></li><li data-type="method" id="GpuCard-updateParameters-nav"><a href="module-GpuCard.html#~updateParameters">updateParameters</a></li></ul></li><li id="HttpService-nav"><a href="module-HttpService.html">HttpService</a><ul class='members' aria-label='Members'><li data-type="member" id="HttpService-options-nav"><a href="module-HttpService.html#~options">options</a></li><li data-type="member" id="HttpService-url-nav"><a href="module-HttpService.html#~url">url</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="HttpService-GetComputer-nav"><a href="module-HttpService.html#.GetComputer">GetComputer</a></li><li data-type="method" id="HttpService-GetComputers-nav"><a href="module-HttpService.html#.GetComputers">GetComputers</a></li><li data-type="method" id="HttpService-GetCpuReading-nav"><a href="module-HttpService.html#.GetCpuReading">GetCpuReading</a></li><li data-type="method" id="HttpService-GetGpuReading-nav"><a href="module-HttpService.html#.GetGpuReading">GetGpuReading</a></li><li data-type="method" id="HttpService-GetRamReading-nav"><a href="module-HttpService.html#.GetRamReading">GetRamReading</a></li><li data-type="method" id="HttpService-GetStorageReading-nav"><a href="module-HttpService.html#.GetStorageReading">GetStorageReading</a></li></ul></li><li id="ProgressBar-nav"><a href="module-ProgressBar.html">ProgressBar</a><ul class='methods' aria-label='Methods'><li data-type="method" id="ProgressBar-create-nav"><a href="module-ProgressBar.html#.create">create</a></li><li data-type="method" id="ProgressBar-update-nav"><a href="module-ProgressBar.html#.update">update</a></li><li data-type="method" id="ProgressBar-getNeutralStyle-nav"><a href="module-ProgressBar.html#~getNeutralStyle">getNeutralStyle</a></li><li data-type="method" id="ProgressBar-getStyle-nav"><a href="module-ProgressBar.html#~getStyle">getStyle</a></li></ul></li><li id="RamCard-nav"><a href="module-RamCard.html">RamCard</a><ul class='members' aria-label='Members'><li data-type="member" id="RamCard-_rmramcard-nav"><a href="module-RamCard.html#._rmramcard">_rmramcard</a></li><li data-type="member" id="RamCard-bgInterval-nav"><a href="module-RamCard.html#~bgInterval">bgInterval</a></li><li data-type="member" id="RamCard-chart-nav"><a href="module-RamCard.html#~chart">chart</a></li><li data-type="member" id="RamCard-oldparameters-nav"><a href="module-RamCard.html#~oldparameters">oldparameters</a></li><li data-type="member" id="RamCard-parameters-nav"><a href="module-RamCard.html#~parameters">parameters</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="RamCard-chartBarColor-nav"><a href="module-RamCard.html#~chartBarColor">chartBarColor</a></li><li data-type="method" id="RamCard-chartOnStep-nav"><a href="module-RamCard.html#~chartOnStep">chartOnStep</a></li><li data-type="method" id="RamCard-computerChanged-nav"><a href="module-RamCard.html#~computerChanged">computerChanged</a></li><li data-type="method" id="RamCard-getRam-nav"><a href="module-RamCard.html#~getRam">getRam</a></li><li data-type="method" id="RamCard-getRamReading-nav"><a href="module-RamCard.html#~getRamReading">getRamReading</a></li><li data-type="method" id="RamCard-init-nav"><a href="module-RamCard.html#~init">init</a></li><li data-type="method" id="RamCard-toggleCard-nav"><a href="module-RamCard.html#~toggleCard">toggleCard</a></li><li data-type="method" id="RamCard-updateParameters-nav"><a href="module-RamCard.html#~updateParameters">updateParameters</a></li></ul></li><li id="SideBar-nav"><a href="module-SideBar.html">SideBar</a><ul class='members' aria-label='Members'><li data-type="member" id="SideBar-_rmsidebar-nav"><a href="module-SideBar.html#._rmsidebar">_rmsidebar</a></li><li data-type="member" id="SideBar-oldparameters-nav"><a href="module-SideBar.html#~oldparameters">oldparameters</a></li><li data-type="member" id="SideBar-parameters-nav"><a href="module-SideBar.html#~parameters">parameters</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="SideBar-configScrollHeight-nav"><a href="module-SideBar.html#~configScrollHeight">configScrollHeight</a></li><li data-type="method" id="SideBar-filterComputerList-nav"><a href="module-SideBar.html#~filterComputerList">filterComputerList</a></li><li data-type="method" id="SideBar-getComputers-nav"><a href="module-SideBar.html#~getComputers">getComputers</a></li><li data-type="method" id="SideBar-handleChanges-nav"><a href="module-SideBar.html#~handleChanges">handleChanges</a></li><li data-type="method" id="SideBar-init-nav"><a href="module-SideBar.html#~init">init</a></li><li data-type="method" id="SideBar-setCurrentComputer-nav"><a href="module-SideBar.html#~setCurrentComputer">setCurrentComputer</a></li><li data-type="method" id="SideBar-toggleSidebar-nav"><a href="module-SideBar.html#~toggleSidebar">toggleSidebar</a></li><li data-type="method" id="SideBar-updateParameters-nav"><a href="module-SideBar.html#~updateParameters">updateParameters</a></li></ul></li><li id="StorageCard-nav"><a href="module-StorageCard.html">StorageCard</a><ul class='members' aria-label='Members'><li data-type="member" id="StorageCard-_rmstoragecard-nav"><a href="module-StorageCard.html#._rmstoragecard">_rmstoragecard</a></li><li data-type="member" id="StorageCard-bgInterval-nav"><a href="module-StorageCard.html#~bgInterval">bgInterval</a></li><li data-type="member" id="StorageCard-oldparameters-nav"><a href="module-StorageCard.html#~oldparameters">oldparameters</a></li><li data-type="member" id="StorageCard-parameters-nav"><a href="module-StorageCard.html#~parameters">parameters</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="StorageCard-computerChanged-nav"><a href="module-StorageCard.html#~computerChanged">computerChanged</a></li><li data-type="method" id="StorageCard-getStorage-nav"><a href="module-StorageCard.html#~getStorage">getStorage</a></li><li data-type="method" id="StorageCard-getStorageReading-nav"><a href="module-StorageCard.html#~getStorageReading">getStorageReading</a></li><li data-type="method" id="StorageCard-init-nav"><a href="module-StorageCard.html#~init">init</a></li><li data-type="method" id="StorageCard-toggleCard-nav"><a href="module-StorageCard.html#~toggleCard">toggleCard</a></li><li data-type="method" id="StorageCard-updateParameters-nav"><a href="module-StorageCard.html#~updateParameters">updateParameters</a></li></ul></li><li id="Tabs-nav"><a href="module-Tabs.html">Tabs</a><ul class='members' aria-label='Members'><li data-type="member" id="Tabs-_rmtabs-nav"><a href="module-Tabs.html#~_rmtabs">_rmtabs</a></li><li data-type="member" id="Tabs-oldparameters-nav"><a href="module-Tabs.html#~oldparameters">oldparameters</a></li><li data-type="member" id="Tabs-parameters-nav"><a href="module-Tabs.html#~parameters">parameters</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="Tabs-updateParameters-nav"><a href="module-Tabs.html#~updateParameters">updateParameters</a></li></ul></li><li id="Tools-nav"><a href="module-Tools.html">Tools</a><ul class='methods' aria-label='Methods'><li data-type="method" id="Tools-mapValue-nav"><a href="module-Tools.html#.mapValue">mapValue</a></li><li data-type="method" id="Tools-percentToColor-nav"><a href="module-Tools.html#.percentToColor">percentToColor</a></li></ul></li><li id="WebStorage-nav"><a href="module-WebStorage.html">WebStorage</a><ul class='members' aria-label='Members'><li data-type="member" id="WebStorage-currentcomputer-nav"><a href="module-WebStorage.html#~currentcomputer">currentcomputer</a></li></ul><ul class='methods' aria-label='Methods'><li data-type="method" id="WebStorage-getCurrentComputer-nav"><a href="module-WebStorage.html#.getCurrentComputer">getCurrentComputer</a></li><li data-type="method" id="WebStorage-setCurrentComputer-nav"><a href="module-WebStorage.html#.setCurrentComputer">setCurrentComputer</a></li></ul></li></ul>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        utils/tools.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/**
+ * Contém "ferramentas" usadas em todo o sistema
+ * @module Tools
+ */
+
+ /**
+  * Função que converte um Valor passado em uma Cor em Hex tendo como padrão uma variação entre Vermelho e Verde
+  * @param {number} percent - Valor a ser convertido
+  * @param {number} min - Valor Mínimo a ser levado em consideração (Verde)
+  * @param {number} max - Valor Máximo a ser levado em condideração (Vermelho)
+  * @returns {string} String que representa a Cor me Hex do valor recebido
+  */
+export function percentToColor(percent, min, max) {
+    if (percent &lt;= 0) {
+        return '#00FF00';
+    }
+    else if (percent >= 100) {
+        return '#FF0000';
+    }
+
+    const diff = max - min;
+    let red = 0;
+    let green = 0;
+    const blue = 0;
+
+    if (diff === 0) {
+        percent = 100;
+    }
+    else {
+        percent = (percent - min) / diff * 100;
+    }
+
+    if (percent &lt; 50) {
+        red = 255;
+        green = Math.round(5.1 * percent);
+    }
+    else {
+        green = 255;
+        red = Math.round(510 - 5.1 * percent);
+    }
+
+    const hex = red * 0x10000 + green * 0x100 + blue * 0x1;
+    return '#' + ('000000' + hex.toString(16)).slice(-6);
+}
+
+/**
+ * Mapeia um valor passado de um intervalo para outro intervalo
+ * @param {number} value - Valor a ser Mapeado
+ * @param {number[]} from - Intervalo de Mapeamento inicial [min, max]
+ * @param {number[]} to - Intervalo de Mapeamento final [min, max]
+ * @returns {number} Valor final após o remapeamento
+ */
+export function mapValue(value, from, to) {
+    return to[0] + (value - from[0]) * (to[1] - to[0]) / (from[1] - from[0]);
+}
+</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>
