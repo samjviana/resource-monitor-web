@@ -2,7 +2,6 @@
  * Representa um interface para as tags de armazenamento que são usadas pelo sistema
  * @module WebStorage
  */
-import { Computer } from '../models/computer.js';
 
 /**
  * Representa o computador selecionado atualmente no sistema

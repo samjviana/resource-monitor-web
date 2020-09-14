@@ -175,7 +175,6 @@ function handleChanges() {
 
     parameters.computers.forEach((computer, index) => {
         const computerlist = document.querySelector('#sidebar-computerlist ul');
-        const online = computer.status ? 'green-text' : 'red-text';
 
         function getTemplate(computer) {
             return `

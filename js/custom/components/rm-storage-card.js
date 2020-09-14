@@ -6,10 +6,7 @@ import * as CustomEvents from '../utils/events.js';
 import * as WebStorage from '../utils/webstorage.js';
 import * as httpservice from '../utils/httpservice.js';
 import * as rmprogressbar from './rm-progressbar.js';
-import * as Tools from '../utils/tools.js';
 import { _rmsidebar } from './rm-sidebar.js';
-import { Storage } from "../models/storage.js";
-import { StorageReading } from '../models/storagereading.js';
 
 /**
  * Constante para acessar a StorageCard no DOM

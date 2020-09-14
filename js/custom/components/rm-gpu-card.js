@@ -62,7 +62,14 @@ const chart = new EasyPieChart(_rmgpucard.querySelector('.chart'), {
     lineWidth: 13,
     size: 150,
     trackColor: '#e7e8ea',
-    onStep: (from, to, currentvalue) => chartOnStep(from, to, currentvalue),
+    onStep: (from, to, currentvalue) => {
+        if (parameters.disabled) {
+            _rmgpucard.querySelector('#chart h5').innerHTML = '-';
+        }
+        else {
+            _rmgpucard.querySelector('#chart h5').innerHTML = currentvalue.toFixed(1) + '%';
+        }
+    },
     barColor: (currentvalue) => chartBarColor(currentvalue),
     animate: {
         duration: 750,
@@ -72,21 +79,6 @@ const chart = new EasyPieChart(_rmgpucard.querySelector('.chart'), {
 
 document.addEventListener('DOMContentLoaded', init);
 _rmsidebar.addEventListener(CustomEvents.computerchanged, computerChanged);
-
-/**
- * Função que define a atualização do texto do gráfico (Usada como Callback durate animação do gráfico)
- * @param {number} from - Valor inicial da animação do gráfico
- * @param {number} to  - Valor final da animação do gráfico
- * @param {number} currentvalue - Valor atual da animação do gráfico
- */
-function chartOnStep(from, to, currentvalue) {
-    if (parameters.disabled) {
-        _rmgpucard.querySelector('#chart h5').innerHTML = '-';
-    }
-    else {
-        _rmgpucard.querySelector('#chart h5').innerHTML = currentvalue.toFixed(1) + '%';
-    }
-}
 
 /**
  * Retorna a Cor que deverá ser aplicada no gráfico

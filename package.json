@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-        "start": "lite-server --config configs/bs-config.json",
-        "docs": "jsdoc -r --configure configs/.jsdoc.json --verbose ./js/custom/"
+		"start": "lite-server --config configs/bs-config.json",
+		"docs": "jsdoc -r --configure configs/.jsdoc.json --verbose ./js/custom/"
 	},
 	"author": "",
 	"license": "ISC",
