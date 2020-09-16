@@ -146,11 +146,13 @@ function getStorageReading() {
     httpservice.GetStorageReading(WebStorage.getCurrentComputer(), parameters.currentid).then((response) => {
         updateParameters('storagereadings', response);
         
-        parameters.storagereadings.forEach((storagereading, id) => {
-            rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${id}`), storagereading.usage, 0, 100, '%');
-            rmprogressbar.update(_rmstoragecard.querySelector(`#read-${id}`), storagereading.read / 1024, 0, 0, 'GB/s');
-            rmprogressbar.update(_rmstoragecard.querySelector(`#write-${id}`), storagereading.write / 1024, 0, 0, 'GB/s');
-        });
+        if (parameters.storagereadings instanceof Array) {
+            parameters.storagereadings.forEach((storagereading, id) => {
+                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${id}`), storagereading.usage, 0, 100, '%');
+                rmprogressbar.update(_rmstoragecard.querySelector(`#read-${id}`), storagereading.read / 1024, 0, 0, 'GB/s');
+                rmprogressbar.update(_rmstoragecard.querySelector(`#write-${id}`), storagereading.write / 1024, 0, 0, 'GB/s');
+            });
+        }
 
         if(parameters.loading) {
             updateParameters('loading', false);
