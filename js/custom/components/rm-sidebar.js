@@ -19,12 +19,19 @@ export const _rmsidebar = document.getElementById('rm-sidebar');
  * @property {boolean} active=true Define se a SideBar está aberta (true) ou fechada (false).
  * @property {Computer[]} computers=[]] Contém uma lista de computadores atualmente carregados.
  * @property {Computer} currentcomputer=null Contém o atual computador selecionado.
+ * @property {Object} touch=Object Contém informações sobre o touch em dispositivos mobile
  */
 const parameters = {
     loaded: false,
     active: true,
     computers: [],
-    currentcomputer: null
+    currentcomputer: null,
+    touch: {
+        start_x: 0, 
+        start_y: 0, 
+        end_x: 0, 
+        end_y: 0
+    }
 }
 
 /**
@@ -50,9 +57,54 @@ function init() {
         updateParameters('loaded', true);
     }
 
+    configSwipe();
+
     configScrollHeight();
 
     setInterval(getComputers, 1000);
+}
+
+/**
+ * Configura o Swipe em dispositivos mobile
+ */
+function configSwipe() {
+    if (!isMobile()) {
+        return;
+    }
+
+    let overlay = _rmsidebar.querySelector('.overlay');
+    overlay.addEventListener('touchstart', (event) => {
+        let touchinfo = {
+            start_x: Math.abs(event.touches[0].clientX), 
+            start_y: Math.abs(event.touches[0].clientY), 
+            end_x: parameters.touch.end_x, 
+            end_y: parameters.touch.end_y
+        }        
+        updateParameters('touch', touchinfo);
+    });
+    overlay.addEventListener('touchend', (event) => {
+        let touchinfo = {
+            start_x: parameters.touch.start_x, 
+            start_y: parameters.touch.start_y, 
+            end_x: Math.abs(event.changedTouches[0].clientX), 
+            end_y: Math.abs(event.changedTouches[0].clientY)
+        }        
+        updateParameters('touch', touchinfo);
+        handleSwipe();
+    });
+}
+
+/**
+ * Verifica se o dispositivo atual é mobile
+ * @returns {boolean}
+ */
+function isMobile() {
+    try {
+        document.createEvent("touchevent");
+        return true;
+    } catch (exception) {
+        return false
+    }
 }
 
 /**
@@ -233,6 +285,20 @@ function configScrollHeight() {
     const element = document.querySelector('#rm-sidebar .scrollbar');
     const offset = window.innerHeight - element.offsetTop - 66;
     element.setAttribute('style', `height: ${offset}px`);
+}
+
+/**
+ * Interpreta os eventos de touch que ocorreram.
+ */
+function handleSwipe() {
+	if (((parameters.touch.end_x - parameters.touch.start_x) > 100) && parameters.active) {
+        /* DIREITA */
+        _rmsidebar.querySelector('.toggler').click();
+	}
+	else if (((parameters.touch.start_x - parameters.touch.end_x) > 100) && !parameters.active) {
+        /* ESQUERDA */
+        _rmsidebar.querySelector('.overlay').click();
+	}
 }
 
 /**
