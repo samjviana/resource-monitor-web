@@ -10,7 +10,7 @@ import { CpuReading } from "../models/cpureading.js";
  * Endereço do servidor que fornecerá as informações dos computadores
  * @constant {string} 
  */
-const url = 'http://samjviana.ddns.net:8084';
+const url = 'http://samjviana.ddns.net:9002';
 
 /**
  * Opções que serão usadas na requisição HTTP
@@ -28,7 +28,7 @@ const options = {
  * @returns {Computer[]} Lista de computadores
  */
 export function GetComputers() {
-    return fetch(`${url}/computers`, options).then(response => response.json()).catch(error => console.error('GetComputers ERROR: ', error));
+    return fetch(`${url}/computador&get&all`, options).then(response => response.json()).catch(error => console.error('GetComputers ERROR: ', error));
 }
 
 /**

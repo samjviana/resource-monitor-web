@@ -124,6 +124,6 @@ a[aria-expanded="true"] {
 }
 
 #rm-sidebar .overlay.off{
-    /*visibility: hidden;*/
+    visibility: hidden;
     opacity: 0;
 }
