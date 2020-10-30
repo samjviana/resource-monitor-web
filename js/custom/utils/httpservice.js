@@ -37,7 +37,7 @@ export function GetComputers() {
  * @returns {Computer} Objeto contendo informações completas do Computador
  */
 export function GetComputer(computername) {
-    return fetch(`${url}/computer?${computername}`, options).then(response => response.json()).catch(error => console.error('GetComputer ERROR: ', error));
+    return fetch(`${url}/computador/${computername}`, options).then(response => response.json()).catch(error => console.error('GetComputer ERROR: ', error));
 }
 
 /**
@@ -47,7 +47,7 @@ export function GetComputer(computername) {
  * @returns {CpuReading} Objeto contendo informações de leitura da CPU
  */
 export function GetCpuReading(computername, cpuid) {
-    return fetch(`${url}/readings?${computername}&cpu&${cpuid}`, options).then(response => response.json()).catch(error => console.error('GetCpuReading ERROR: ', error));
+    return fetch(`${url}/leitura/${computername}/cpu/${cpuid}`, options).then(response => response.json()).catch(error => console.error('GetCpuReading ERROR: ', error));
 }
 
 /**
@@ -57,7 +57,7 @@ export function GetCpuReading(computername, cpuid) {
  * @returns {GpuReading} Objeto contendo informações de leitura da GPU
  */
 export function GetGpuReading(computername, gpuid) {
-    return fetch(`${url}/readings?${computername}&gpu&${gpuid}`, options).then(response => response.json()).catch(error => console.error('GetGpuReading ERROR: ', error));
+    return fetch(`${url}/leitura/${computername}/gpu/${gpuid}`, options).then(response => response.json()).catch(error => console.error('GetGpuReading ERROR: ', error));
 }
 
 /**
@@ -66,7 +66,7 @@ export function GetGpuReading(computername, gpuid) {
  * @returns {RamReading} Objeto contendo informações de leitura da RAM
  */
 export function GetRamReading(computername) {
-    return fetch(`${url}/readings?${computername}&ram`, options).then(response => response.json()).catch(error => console.error('GetRamReading ERROR: ', error));
+    return fetch(`${url}/leitura/${computername}/ram`, options).then(response => response.json()).catch(error => console.error('GetRamReading ERROR: ', error));
 }
 
 /**
@@ -75,5 +75,5 @@ export function GetRamReading(computername) {
  * @returns {StorageReading} Objeto contendo informações de leitura dos Dispositivos de Armazenamento
  */
 export function GetStorageReading(computername) {
-    return fetch(`${url}/readings?${computername}&hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageReading ERROR: ', error));
+    return fetch(`${url}/leitura/${computername}/hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageReading ERROR: ', error));
 }

@@ -124,13 +124,16 @@ function createDeviceCards() {
     let progressbarcontainer = _rmstoragecard.querySelector('#rm-progressbar');
     progressbarcontainer.innerHTML = '';
     parameters.storages.forEach((storage, index) => {
+        console.log(storage);
+        storage.read = 100;
+        storage.write = 100;
         let template = `
             <div class="card border ${(index + 1) === parameters.storages.length ? 'mt-1 mb-3' : 'my-1'}">
                 <div class="card-body">
-                    ${rmprogressbar.create(storage.name, `storage-${storage.id}`, storage.disk, 0, '%', 0, 100)}
+                    ${rmprogressbar.create(storage.name, `storage-${storage.number}`, storage.disks, 0, '%', 0, 100)}
                     <small class="d-flex justify-content-between w-100 mt-2">
-                        ${rmprogressbar.create('Leitura', `read-${storage.id}`, '', -1, '', 0, storage.read, 'w-100 pr-3 storage')}
-                        ${rmprogressbar.create('Escrita', `write-${storage.id}`, '', -1, '', 0, storage.write, 'w-100 pl-3 storage')}
+                        ${rmprogressbar.create('Leitura', `read-${storage.number}`, '', -1, '', 0, storage.read, 'w-100 pr-3 storage')}
+                        ${rmprogressbar.create('Escrita', `write-${storage.number}`, '', -1, '', 0, storage.write, 'w-100 pl-3 storage')}
                     </small>
                 </div>
             </div>
@@ -147,10 +150,11 @@ function getStorageReading() {
         updateParameters('storagereadings', response);
         
         if (parameters.storagereadings instanceof Array) {
-            parameters.storagereadings.forEach((storagereading, id) => {
-                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${id}`), storagereading.usage, 0, 100, '%');
-                rmprogressbar.update(_rmstoragecard.querySelector(`#read-${id}`), storagereading.read / 1024, 0, 0, 'GB/s');
-                rmprogressbar.update(_rmstoragecard.querySelector(`#write-${id}`), storagereading.write / 1024, 0, 0, 'GB/s');
+            parameters.storagereadings.forEach((storagereading, number) => {
+                console.log(storagereading);
+                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${number}`), storagereading.load, 0, 100, '%');
+                rmprogressbar.update(_rmstoragecard.querySelector(`#read-${number}`), storagereading.read / 1024, 0, 0, 'GB/s');
+                rmprogressbar.update(_rmstoragecard.querySelector(`#write-${number}`), storagereading.write / 1024, 0, 0, 'GB/s');
             });
         }
 
