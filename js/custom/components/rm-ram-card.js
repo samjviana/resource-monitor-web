@@ -180,6 +180,7 @@ function getRamReading() {
         if(parameters.loading) {
             chart.update(parameters.ramreading.load);
             updateParameters('loading', false);
+            CustomEvents.triggerEvent(_rmramcard, CustomEvents.componentloaded, parameters);
             toggleCard();
         }
     });

@@ -19,14 +19,14 @@ export const _rmstoragecard = document.getElementById('rm-storage-card');
  * @constant {Object}
  * @property {boolean} loading=false Define se o StorageCard já finalizou o carregamento (true) ou não (false).
  * @property {boolean} disabled=true Define se o StorageCard está desativado (true) ou ativado (false).
- * @property {Storage} storages=[]] Representa uma lista de Dispositivos de Armazenamento que o Card irá mostrar.
- * @property {StorageReading} storagereadings=[]] Representa as Leituras atuais dos Dispositivos de Armazenamento
+ * @property {Storage} storagedevices=[]] Representa uma lista de Dispositivos de Armazenamento que o Card irá mostrar.
+ * @property {StorageDeviceReading} storagedevicereadings=[]] Representa as Leituras atuais dos Dispositivos de Armazenamento
  */
 const parameters = {
     loading: false,
     disabled: true,
-    storages: [],
-    storagereadings: [],
+    storagedevices: [],
+    storagedevicereadings: [],
 }
 
 /**
@@ -85,7 +85,7 @@ function computerChanged(event) {
  
     getStorage();
 
-    bgInterval = setInterval(getStorageReading, 1000);
+    bgInterval = setInterval(getStorageDeviceReading, 1000);
 }
 
 /**
@@ -111,7 +111,7 @@ function updateParameters(parameter, value) {
  */
 function getStorage() {
     httpservice.GetComputer(WebStorage.getCurrentComputer()).then((response) => {
-        updateParameters('storages', response.storages);
+        updateParameters('storagedevices', response.storages);
 
         createDeviceCards();
     });
@@ -123,12 +123,11 @@ function getStorage() {
 function createDeviceCards() {
     let progressbarcontainer = _rmstoragecard.querySelector('#rm-progressbar');
     progressbarcontainer.innerHTML = '';
-    parameters.storages.forEach((storage, index) => {
-        console.log(storage);
+    parameters.storagedevices.forEach((storage, index) => {
         storage.read = 100;
         storage.write = 100;
         let template = `
-            <div class="card border ${(index + 1) === parameters.storages.length ? 'mt-1 mb-3' : 'my-1'}">
+            <div class="card border ${(index + 1) === parameters.storagedevices.length ? 'mt-1 mb-3' : 'my-1'}">
                 <div class="card-body">
                     ${rmprogressbar.create(storage.name, `storage-${storage.number}`, storage.disks, 0, '%', 0, 100)}
                     <small class="d-flex justify-content-between w-100 mt-2">
@@ -145,21 +144,21 @@ function createDeviceCards() {
 /**
  * Requisita ao servidor dados de leitura da RAM do Computador selecionado atualmenteatravés de um serviço HTTP
  */
-function getStorageReading() {  
-    httpservice.GetStorageReading(WebStorage.getCurrentComputer(), parameters.currentid).then((response) => {
-        updateParameters('storagereadings', response);
+function getStorageDeviceReading() {  
+    httpservice.GetStorageDeviceReading(WebStorage.getCurrentComputer(), parameters.currentid).then((response) => {
+        updateParameters('storagedevicereadings', response);
         
-        if (parameters.storagereadings instanceof Array) {
-            parameters.storagereadings.forEach((storagereading, number) => {
-                console.log(storagereading);
-                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${number}`), storagereading.load, 0, 100, '%');
-                rmprogressbar.update(_rmstoragecard.querySelector(`#read-${number}`), storagereading.read / 1024, 0, 0, 'GB/s');
-                rmprogressbar.update(_rmstoragecard.querySelector(`#write-${number}`), storagereading.write / 1024, 0, 0, 'GB/s');
+        if (parameters.storagedevicereadings instanceof Array) {
+            parameters.storagedevicereadings.forEach((storagedevicereading, number) => {
+                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${number}`), storagedevicereading.load, 0, 100, '%');
+                rmprogressbar.update(_rmstoragecard.querySelector(`#read-${number}`), storagedevicereading.read / 1024, 0, 0, 'GB/s');
+                rmprogressbar.update(_rmstoragecard.querySelector(`#write-${number}`), storagedevicereading.write / 1024, 0, 0, 'GB/s');
             });
         }
 
         if(parameters.loading) {
             updateParameters('loading', false);
+            CustomEvents.triggerEvent(_rmstoragecard, CustomEvents.componentloaded, parameters);
             toggleCard();
         }
     });

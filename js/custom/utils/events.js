@@ -10,6 +10,12 @@
 export const paramchanged = 'paramchanged';
 
 /**
+ * Usado para detectar quando um componente finalizou seu carregamento
+ * @constant {string}
+ */
+export const componentloaded = 'componentloaded';
+
+/**
  * Usado para detectar quando a Sidebar Abre ou Fecha
  * @constant {string}
  */

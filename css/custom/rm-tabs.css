@@ -10,14 +10,21 @@
 }
 
 #rm-tabs .tabs .tab-content section h2,
-#rm-tabs .tabs ul li label {
+#rm-tabs .tabs ul.tab-selector li label {
     font-weight: bold;
     font-size: 18px;
     line-height: 1.25;
     color: #2196f3;
 }
 
-#rm-tabs .tabs ul {
+#rm-tabs .tabs h2 {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 1.25;
+    color: #2196f3;
+}
+
+#rm-tabs .tabs ul.tab-selector{
     list-style-type: none;
     padding-left: 0;
     display: -webkit-box;
@@ -32,7 +39,7 @@
     flex-wrap: wrap;
 }
 
-#rm-tabs .tabs ul li {
+#rm-tabs .tabs ul.tab-selector li {
     box-sizing: border-box;
     -webkit-box-flex: 1;
     flex: 1;
@@ -41,7 +48,7 @@
     text-align: center;
 }
 
-#rm-tabs .tabs ul li label {
+#rm-tabs .tabs ul.tab-selector li label {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     color: #929daf;
@@ -60,11 +67,11 @@
     user-select: none;
 }
 
-#rm-tabs .tabs ul li label br {
+#rm-tabs .tabs ul.tab-selector li label br {
     display: none;
 }
 
-#rm-tabs .tabs ul li label svg {
+#rm-tabs .tabs ul.tab-selector li label svg {
     fill: #929daf;
     height: 1.2em;
     vertical-align: bottom;
@@ -73,16 +80,16 @@
     transition: all 0.2s ease-in-out;
 }
 
-#rm-tabs .tabs ul li label:hover,
-#rm-tabs .tabs ul li label:focus,
-#rm-tabs .tabs ul li label:active {
+#rm-tabs .tabs ul.tab-selector li label:hover,
+#rm-tabs .tabs ul.tab-selector li label:focus,
+#rm-tabs .tabs ul.tab-selector li label:active {
     outline: 0;
     color: #bec5cf;
 }
 
-#rm-tabs .tabs ul li label:hover svg,
-#rm-tabs .tabs ul li label:focus svg,
-#rm-tabs .tabs ul li label:active svg {
+#rm-tabs .tabs ul.tab-selector li label:hover svg,
+#rm-tabs .tabs ul.tab-selector li label:focus svg,
+#rm-tabs .tabs ul.tab-selector li label:active svg {
     fill: #bec5cf;
 }
 
@@ -149,16 +156,16 @@
 /** tab 1 **/
 #rm-tabs .tabs
     input[name="tab-control"]:nth-of-type(1):checked
-    ~ ul
+    ~ ul.tab-selector
     > li:nth-child(1)
     > label {
-    cursor: default;
+    cursor: defaul.tab-selectort;
     color: #428bff;
 }
 
 #rm-tabs .tabs
     input[name="tab-control"]:nth-of-type(1):checked
-    ~ ul
+    ~ ul.tab-selector
     > li:nth-child(1)
     > label
     svg {
@@ -168,7 +175,7 @@
 @media (max-width: 600px) {
     #rm-tabs .tabs
         input[name="tab-control"]:nth-of-type(1):checked
-        ~ ul
+        ~ ul.tab-selector
         > li:nth-child(1)
         > label {
         background: rgba(0, 0, 0, 0.08);
@@ -188,15 +195,15 @@
 /** tab 2 **/
 #rm-tabs .tabs
     input[name="tab-control"]:nth-of-type(2):checked
-    ~ ul
+    ~ ul.tab-selector
     > li:nth-child(2)
     > label {
-    cursor: default;
+    cursor: defaul.tab-selectort;
     color: #428bff;
 }
 #rm-tabs .tabs
     input[name="tab-control"]:nth-of-type(2):checked
-    ~ ul
+    ~ ul.tab-selector
     > li:nth-child(2)
     > label
     svg {
@@ -205,7 +212,7 @@
 @media (max-width: 600px) {
     #rm-tabs .tabs
         input[name="tab-control"]:nth-of-type(2):checked
-        ~ ul
+        ~ ul.tab-selector
         > li:nth-child(2)
         > label {
         background: rgba(0, 0, 0, 0.08);
@@ -247,22 +254,22 @@
     }
 }
 @media (max-width: 1000px) {
-    #rm-tabs .tabs ul li label {
+    #rm-tabs .tabs ul.tab-selector li label {
         white-space: initial;
     }
-    #rm-tabs .tabs ul li label br {
+    #rm-tabs .tabs ul.tab-selector li label br {
         display: initial;
     }
-    #rm-tabs .tabs ul li label svg {
+    #rm-tabs .tabs ul.tab-selector li label svg {
         height: 1.5em;
     }
 }
 @media (max-width: 600px) {
-    #rm-tabs .tabs ul li label {
+    #rm-tabs .tabs ul.tab-selector li label {
         padding: 5px;
         border-radius: 5px;
     }
-    #rm-tabs .tabs ul li label span {
+    #rm-tabs .tabs ul.tab-selector li label span {
         display: none;
     }
     #rm-tabs .tabs .slider {

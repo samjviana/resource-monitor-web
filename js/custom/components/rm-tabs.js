@@ -29,7 +29,7 @@ let oldparameters = parameters;
 _rmsidebar.addEventListener(CustomEvents.computerchanged, (event) => {
     updateParameters('currentcomputer', event.detail.currentcomputer);
 
-    _rmtabs.querySelectorAll('section h2').forEach((element) => {
+    _rmtabs.querySelectorAll('h2').forEach((element) => {
         element.innerHTML = parameters.currentcomputer.name;
     });
 });

@@ -234,6 +234,7 @@ function getCpuReading() {
         if(parameters.loading) {
             chart.update(parameters.cpureading.load);
             updateParameters('loading', false);
+            CustomEvents.triggerEvent(_rmcpucard, CustomEvents.componentloaded, parameters);
             toggleCard();
         }
     });

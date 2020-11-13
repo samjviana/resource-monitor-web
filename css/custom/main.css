@@ -6,6 +6,7 @@
 @import "rm-ram-card.css";
 @import "rm-storage-card.css";
 @import "rm-progressbar.css";
+@import "rm-details-tab.css";
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {

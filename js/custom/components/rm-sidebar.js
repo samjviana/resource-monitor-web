@@ -55,6 +55,7 @@ function init() {
     }
     else {
         updateParameters('loaded', true);
+        CustomEvents.triggerEvent(_rmsidebar, CustomEvents.componentloaded, parameters);
     }
 
     configSwipe();
@@ -204,7 +205,8 @@ function setCurrentComputer(event) {
 
     updateParameters('currentcomputer', computer);
     updateParameters('loaded', true);
-
+    
+    CustomEvents.triggerEvent(_rmsidebar, CustomEvents.componentloaded, parameters);
     CustomEvents.triggerEvent(_rmsidebar, CustomEvents.computerchanged, {currentcomputer: parameters.currentcomputer});
 
     toggleSidebar();
@@ -267,7 +269,8 @@ function handleChanges() {
             if (parameters.currentcomputer !== null) {
                 if (parameters.currentcomputer.name === element.id) {
                     element.classList.add('active');
-                    parameters.loaded = true;
+                    updateParameters('loaded', true);
+                    CustomEvents.triggerEvent(_rmsidebar, CustomEvents.componentloaded, parameters);
                 }
             }
             element.addEventListener('click', setCurrentComputer);

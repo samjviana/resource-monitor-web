@@ -216,6 +216,7 @@ function getGpu() {
 
             updateParameters('loading', false);
             updateParameters('disabled', true);
+            CustomEvents.triggerEvent(_rmcpucard, CustomEvents.componentloaded, parameters);
             toggleCard();
             clearInterval(bgInterval);
             return;
@@ -257,6 +258,7 @@ function getGpuReading() {
         if(parameters.loading) {
             chart.update(parameters.gpureading.load);
             updateParameters('loading', false);
+            CustomEvents.triggerEvent(_rmgpucard, CustomEvents.componentloaded, parameters);
             toggleCard();
         }
     });

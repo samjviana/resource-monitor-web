@@ -72,8 +72,8 @@ export function GetRamReading(computername) {
 /**
  * Solicita ao servidor dados de leitura dos Dispositivos de Armazenamento de um Computador passado como parâmetro
  * @param {string} computername - Nome do Computador
- * @returns {StorageReading} Objeto contendo informações de leitura dos Dispositivos de Armazenamento
+ * @returns {StorageDeviceReading} Objeto contendo informações de leitura dos Dispositivos de Armazenamento
  */
-export function GetStorageReading(computername) {
-    return fetch(`${url}/leitura/${computername}/hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageReading ERROR: ', error));
+export function GetStorageDeviceReading(computername) {
+    return fetch(`${url}/leitura/${computername}/hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageDeviceReading ERROR: ', error));
 }
