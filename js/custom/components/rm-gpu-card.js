@@ -8,8 +8,8 @@ import * as httpservice from '../utils/httpservice.js';
 import * as rmprogressbar from './rm-progressbar.js';
 import * as Tools from '../utils/tools.js';
 import { _rmsidebar } from './rm-sidebar.js';
-import { Gpu } from "../models/gpu.js";
-import { GpuReading } from '../models/gpureading.js';
+import { GPU } from "../models/gpu.js";
+import { GpuReading } from "../models/gpu.js";
 
 /**
  * Constante para acessar a GpuCard no DOM
@@ -140,7 +140,7 @@ function computerChanged(event) {
  
     getGpu();
 
-    bgInterval = setInterval(getGpuReading, 1000);
+    bgInterval = setInterval(getGpuReading, 2000);
 }
 
 /**
@@ -208,7 +208,7 @@ function getGpu() {
             chart.update(0);
             let progressbarcontainer = _rmgpucard.querySelector('#rm-progressbar');
             progressbarcontainer.innerHTML = '';
-            progressbarcontainer.innerHTML += rmprogressbar.create('Uso Memória', 'memoryload', '', -1, '', 0, 0);
+            progressbarcontainer.innerHTML += rmprogressbar.create('Energia', 'power', '', -1, '', 0, 0);
             progressbarcontainer.innerHTML += rmprogressbar.create('Temperatura', 'temperature', '', -1, '', 0, 0);
             progressbarcontainer.innerHTML += rmprogressbar.create('Clock Núcleo', 'coreclock', '', -1, '', 0, 0);
             progressbarcontainer.innerHTML += rmprogressbar.create('Clock Memória', 'memoryclock', '', -1, '', 0, 0);
@@ -225,7 +225,7 @@ function getGpu() {
         let progressbarcontainer = _rmgpucard.querySelector('#rm-progressbar');
         let gpu = parameters.gpus[parameters.currentid];
         progressbarcontainer.innerHTML = '';
-        progressbarcontainer.innerHTML += rmprogressbar.create('Uso Memória', 'memoryload', '', 0, '%', 0, gpu.memoryload);
+        progressbarcontainer.innerHTML += rmprogressbar.create('Energia', 'power', '', 0, '%', 0, gpu.power);
         progressbarcontainer.innerHTML += rmprogressbar.create('Temperatura', 'temperature', '', 0, '°C', 0, gpu.temperature);
         progressbarcontainer.innerHTML += rmprogressbar.create('Clock Núcleo', 'coreclock', '', 0, 'MHz', 0, gpu.coreclock);
         progressbarcontainer.innerHTML += rmprogressbar.create('Clock Memória', 'memoryclock', '', 0, 'MHz', 0, gpu.memoryclock);
@@ -246,17 +246,17 @@ function getGpuReading() {
             toggleCard();
             return;
         }
-        chart.update(parameters.gpureading.load);
-        _rmgpucard.querySelector('#chart h5').innerHTML = parameters.gpureading.load;
+        chart.update(parameters.gpureading.readings.load);
+        _rmgpucard.querySelector('#chart h5').innerHTML = parameters.gpureading.readings.load;
 
         let gpu = parameters.gpus[parameters.currentid];
-        rmprogressbar.update(_rmgpucard.querySelector('#memoryload'), parameters.gpureading.memoryload, 0, 100, '%');
-        rmprogressbar.update(_rmgpucard.querySelector('#temperature'), parameters.gpureading.temperature, 0, gpu.temperature, '°C');
-        rmprogressbar.update(_rmgpucard.querySelector('#coreclock'), parameters.gpureading.coreclock, 0, gpu.coreclock, 'MHz');
-        rmprogressbar.update(_rmgpucard.querySelector('#memoryclock'), parameters.gpureading.memoryclock, 0, gpu.memoryclock, 'MHz');
+        rmprogressbar.update(_rmgpucard.querySelector('#power'), parameters.gpureading.readings.power, 0, gpu.power, 'W');
+        rmprogressbar.update(_rmgpucard.querySelector('#temperature'), parameters.gpureading.readings.temperature, 0, gpu.temperature, '°C');
+        rmprogressbar.update(_rmgpucard.querySelector('#coreclock'), parameters.gpureading.readings.coreClock, 0, gpu.coreClock, 'MHz');
+        rmprogressbar.update(_rmgpucard.querySelector('#memoryclock'), parameters.gpureading.readings.memoryClock, 0, gpu.memoryClock, 'MHz');
 
         if(parameters.loading) {
-            chart.update(parameters.gpureading.load);
+            chart.update(parameters.gpureading.readings.load);
             updateParameters('loading', false);
             CustomEvents.triggerEvent(_rmgpucard, CustomEvents.componentloaded, parameters);
             toggleCard();

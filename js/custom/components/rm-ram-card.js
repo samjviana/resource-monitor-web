@@ -7,8 +7,8 @@ import * as WebStorage from '../utils/webstorage.js';
 import * as httpservice from '../utils/httpservice.js';
 import * as Tools from '../utils/tools.js';
 import { _rmsidebar } from './rm-sidebar.js';
-import { Ram } from "../models/ram.js";
-import { RamReading } from '../models/ramreading.js';
+import { RAM } from "../models/ram.js";
+import { RamReading } from "../models/ram.js";
 
 /**
  * Constante para acessar a RamCard no DOM
@@ -21,13 +21,13 @@ export const _rmramcard = document.getElementById('rm-ram-card');
  * @constant {Object}
  * @property {boolean} loading=false Define se o RamCard já finalizou o carregamento (true) ou não (false).
  * @property {boolean} disabled=true Define se o RamCard está desativado (true) ou ativado (false).
- * @property {Ram} ram=Ram.empty() Representa a Memória RAM que o Card irá mostrar.
+ * @property {RAM} ram=RAM.empty() Representa a Memória RAM que o Card irá mostrar.
  * @property {RamReading} ramreading=RamReading.empty() Representa a Leitura atual da RAM selecionada
  */
 const parameters = {
     loading: false,
     disabled: true,
-    ram: Ram.empty(),
+    ram: RAM.empty(),
     ramreading: RamReading.empty(),
 }
 
@@ -130,7 +130,7 @@ function computerChanged(event) {
  
     getRam();
 
-    bgInterval = setInterval(getRamReading, 1000);
+    bgInterval = setInterval(getRamReading, 2000);
 }
 
 /**
@@ -169,16 +169,18 @@ function getRam() {
  */
 function getRamReading() {  
     httpservice.GetRamReading(WebStorage.getCurrentComputer(), parameters.currentid).then((response) => {
-        updateParameters('ramreading', response);
+        let obj = JSON.parse(response);
+        let ramreading = new RamReading(obj.uuid, obj.readings);
+        updateParameters('ramreading', ramreading);
 
-        chart.update(parameters.ramreading.load);
+        chart.update(parameters.ramreading.readings.load);
         _rmramcard.querySelector('#chart h5').innerHTML = parameters.ramreading.load;
 
-        _rmramcard.querySelector('#freeram').innerHTML = `RAM Livre: ${parameters.ramreading.free.toFixed(2)} GB`;
-        _rmramcard.querySelector('#usedram').innerHTML = `RAM Usada: ${parameters.ramreading.used.toFixed(2)} GB`;
+        _rmramcard.querySelector('#freeram').innerHTML = `RAM Livre: ${parameters.ramreading.readings.free.toFixed(2)} GB`;
+        _rmramcard.querySelector('#usedram').innerHTML = `RAM Usada: ${parameters.ramreading.readings.used.toFixed(2)} GB`;
         
         if(parameters.loading) {
-            chart.update(parameters.ramreading.load);
+            chart.update(parameters.ramreading.readings.load);
             updateParameters('loading', false);
             CustomEvents.triggerEvent(_rmramcard, CustomEvents.componentloaded, parameters);
             toggleCard();

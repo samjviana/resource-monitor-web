@@ -124,6 +124,14 @@
     width: 50%;
 }
 
+#rm-tabs .tabs.tabs-3 .slider {
+    width: 33.33333333333%;
+}
+
+#rm-tabs .tabs.tabs-3 .slider .indicator {
+    width: 33.33333333333%;
+}
+
 #rm-tabs .tabs .tab-content {
     margin-top: 15px;
 }
@@ -226,6 +234,43 @@
     input[name="tab-control"]:nth-of-type(2):checked
     ~ .tab-content
     > section:nth-child(2) {
+    display: block;
+}
+
+/** tab 3 **/
+#rm-tabs .tabs
+    input[name="tab-control"]:nth-of-type(3):checked
+    ~ ul.tab-selector
+    > li:nth-child(3)
+    > label {
+    cursor: defaul.tab-selectort;
+    color: #428bff;
+}
+#rm-tabs .tabs
+    input[name="tab-control"]:nth-of-type(3):checked
+    ~ ul.tab-selector
+    > li:nth-child(3)
+    > label
+    svg {
+    fill: #428bff;
+}
+@media (max-width: 600px) {
+    #rm-tabs .tabs
+        input[name="tab-control"]:nth-of-type(3):checked
+        ~ ul.tab-selector
+        > li:nth-child(3)
+        > label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+#rm-tabs .tabs input[name="tab-control"]:nth-of-type(3):checked ~ .slider {
+    -webkit-transform: translateX(200%);
+    transform: translateX(200%);
+}
+#rm-tabs .tabs
+    input[name="tab-control"]:nth-of-type(3):checked
+    ~ .tab-content
+    > section:nth-child(3) {
     display: block;
 }
 

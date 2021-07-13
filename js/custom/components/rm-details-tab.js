@@ -46,7 +46,9 @@ _rmsidebar.addEventListener(CustomEvents.componentloaded, dataLoadListener);
  * Função que deve ser executada para inicializar o componente
  */
 function init() {
-    
+    _rmdetailstab.getElementsByClassName("collapsible").forEach((element) => {
+        element.addEventListener('click', (event) => onHeaderClick(event, element));
+    });
 }
 
 /**
@@ -55,6 +57,46 @@ function init() {
  */
 function computerChanged(event) {
 
+}
+
+/**
+ * Função para alterar o conteúdo de um grupo de informações quando título for clicado.
+ * @param {Event} event - Evento ocorrido caso a função seja definida como listener.
+ * @param {Event} element - Elemento em que o evento ocorreu.
+ */
+ function onHeaderClick(event, element) {
+    element.classList.toggle('active');
+
+    let contentElement = element.nextElementSibling;
+    let ulElement = contentElement.firstElementChild;
+
+    if (element.classList.contains('active')) {
+        contentElement.style.height = (ulElement.clientHeight + 16) + 'px';
+    }
+    else {
+        contentElement.style.height = '0px';
+    }
+
+    /*let contentId = this.nextElementSibling.id;
+
+    var liCount = document.querySelectorAll('#' + current + ' li').length;
+    var brCount = document.querySelectorAll('#' + current + ' br').length;
+    var trList = document.querySelectorAll('#' + current + ' tr');
+
+    var lineCount = liCount + brCount;
+    lineCount *= 19;
+    lineCount += 32;
+    trList.forEach((tr) => {
+    lineCount += tr.clientHeight;
+    });
+
+    var height = document.getElementById(current).clientHeight;
+
+    if(height == 0) {
+    content.style.height = lineCount + 'px';
+    } else {
+    content.style.height = '0px';
+    }*/
 }
 
 /**
@@ -91,11 +133,53 @@ function dataLoadListener(event) {
 
     console.log(parameters.computer);
     if (parameters.computer !== null) {
+        buildComputerDetails();
         buildCpuDetails();
         buildGpuDetails();
         buildRamDetails();
         buildStorageDeviceDetails();
     }
+}
+
+function createInfoRow(label, value) {
+    return `
+        <div class="d-flex justify-content-between mb-1">
+            <div> ${label}: </div>
+            <div> ${value} </div>                   
+        </div>
+        <hr class="underline-hr">
+    `;
+}
+
+/**
+ * Função que constroi a lista de detalhes do Computador e insere a lista no DOM
+ */
+function buildComputerDetails() {
+    let createLiElement = function(computer) {
+        return `
+            ${createInfoRow('Nome', computer.name)}
+            ${computer.partOfDomain ?
+                createInfoRow('Domínio', computer.domain) :
+                createInfoRow('Grupo de Trabalho', computer.workGroup)
+            }
+            ${createInfoRow('Nome no DNS', computer.dnsName)}
+            ${createInfoRow('Função', computer.domainRole)}
+            ${createInfoRow('Usuário Atual', computer.currentUser)}
+            ${createInfoRow('Tipo', computer.computerType)}
+            ${createInfoRow('Fabricante', computer.manufacturer)}
+            ${createInfoRow('Modelo', computer.model)}
+            ${createInfoRow('Estado de Energia', computer.powerState)}
+            ${createInfoRow('Contato do Proprietário', computer.ownerContact)}
+            ${createInfoRow('Nome do Proprietário', computer.ownerName)}
+            ${createInfoRow('Contato do Suporte', computer.supportContact)}
+            ${createInfoRow('Tipo de Sistema', computer.systemType)}
+            ${createInfoRow('Estado Térmico', computer.thermalState)}
+        `;
+    };
+
+    let list = createLiElement(parameters.computer);
+
+    _rmdetailstab.querySelector('#computer ul').innerHTML = list;
 }
 
 /**
@@ -106,7 +190,7 @@ function buildCpuDetails() {
         return `
             <li>
                 <div class="font-weight-bold pb-2"> ${cpu.name} </div>
-                <div class="content">
+                <div class="">
                     <div class="d-flex justify-content-between">
                         <div> Temperatura Suportada: </div>
                         <div> ${cpu.temperature} °C </div>                   
@@ -133,7 +217,7 @@ function buildCpuDetails() {
     }
 
     let list = '';
-    parameters.computer.cpus.forEach((element) => {
+    parameters.computer.processors.forEach((element) => {
         list += createLiElement(element);
     });
 
@@ -148,7 +232,7 @@ function buildGpuDetails() {
         return `
             <li>
                 <div class="font-weight-bold pb-2"> ${gpu.name} </div>
-                <div class="content">
+                <div class="">
                     <div class="d-flex justify-content-between">
                         <div> Temperatura Máxima: </div>
                         <div> ${gpu.temperature} °C </div>                   
@@ -156,12 +240,17 @@ function buildGpuDetails() {
                     <hr class="underline-hr">
                     <div class="d-flex justify-content-between">
                         <div> Clock Máximo do Núcleo: </div>
-                        <div> ${gpu.coreclock} MHz </div>                   
+                        <div> ${gpu.coreClock} MHz </div>                   
                     </div>
                     <hr class="underline-hr">
                     <div class="d-flex justify-content-between">
                         <div> Clock Máximo doa Memória: </div>
-                        <div> ${gpu.memoryclock} MHz </div>                   
+                        <div> ${gpu.memoryClock} MHz </div>                   
+                    </div>
+                    <hr class="underline-hr">
+                    <div class="d-flex justify-content-between">
+                        <div> Potência Máxima: </div>
+                        <div> ${gpu.power} W </div>                   
                     </div>
                     <hr class="underline-hr">
                 </div>
@@ -181,6 +270,19 @@ function buildGpuDetails() {
  * Função que constroi a lista de detalhes da Memória RAM e insere a lista no DOM
  */
 function buildRamDetails() {
+    let createPhysicalMemoryDetails = function(physicalMemories) {
+        let physicalMemoryDetails = '';
+        physicalMemories.forEach((physicalMemory, idx) => {
+            physicalMemoryDetails += `
+                <div class="d-flex justify-content-between">
+                    <div> Memória Física #${idx}: </div>
+                    <div> ${physicalMemory.capacity / 1024} GB </div>
+                    </div>
+                <hr class="underline-hr">                   
+            `;
+        });
+        return physicalMemoryDetails;
+    }
     let createLiElement = function(ram) {
         return `
             <li>
@@ -188,7 +290,9 @@ function buildRamDetails() {
                     <div> Memória Total: </div>
                     <div> ${ram.total} GB </div>                   
                 </div>
-                <hr class="underline-hr">
+                <div class="">
+                    ${createPhysicalMemoryDetails(ram.physicalMemories)}
+                </div>
             </li>
         `;
     }
@@ -203,19 +307,29 @@ function buildRamDetails() {
  * Função que constroi a lista de detalhes dos Dispositivos de Armazenamento e insere a lista no DOM
  */
 function buildStorageDeviceDetails() {
-    let createLiElement = function(storagedevice) {
+    let createLiElement = function(storage) {
         return `
             <li>
-                <div class="font-weight-bold py-2"> ${storagedevice.name} </div>
-                <div class="content">
+                <div class="font-weight-bold py-2"> ${storage.name} </div>
+                <div class="">
                     <div class="d-flex justify-content-between">
                         <div> Discos Lógicos: </div>
-                        <div> ${storagedevice.disks} </div>                   
+                        <div> ${storage.disks} </div>                   
                     </div>
                     <hr class="underline-hr">
                     <div class="d-flex justify-content-between">
                         <div> Capacidade: </div>
-                        <div> ${storagedevice.size.toFixed(2)} GB </div>                   
+                        <div> ${storage.size.toFixed(2)} GB </div>                   
+                    </div>
+                    <hr class="underline-hr">
+                    <div class="d-flex justify-content-between">
+                        <div> Velocidade de Leitura: </div>
+                        <div> ${storage.read.toFixed(2)} MB/s </div>                   
+                    </div>
+                    <hr class="underline-hr">
+                    <div class="d-flex justify-content-between">
+                        <div> Velocidade de Escrita: </div>
+                        <div> ${storage.write.toFixed(2)} MB/s </div>                   
                     </div>
                     <hr class="underline-hr">
                 </div>
@@ -228,5 +342,5 @@ function buildStorageDeviceDetails() {
         list += createLiElement(element);
     });
 
-    document.querySelector('#storagedevices ul').innerHTML = list;
+    document.querySelector('#storages ul').innerHTML = list;
 }

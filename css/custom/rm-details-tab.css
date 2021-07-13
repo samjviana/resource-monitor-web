@@ -1,10 +1,13 @@
 #rm-details-tab h6 {
-    color: #1e88e5;
+    /*color: #1e88e5;*/
+    margin-bottom: 0px;
+    transition: margin 0.15s ease-in-out;
 }
 
-#rm-details-tab ul li {
+#rm-details-tab ul  {
     font-size: 16px;
-    color: #4f4f4f
+    color: #4f4f4f;
+    padding-right: 2rem;
 }
 
 #rm-details-tab ul li .content {
@@ -45,14 +48,16 @@
     /*border-bottom: 3px solid #1e88e5;*/
 }
 
-#rm-details-tab hr.list-title{
+#rm-details-tab hr.list-title {
     height: 4px;
     width: 100%;
-    color: #1e88e5;
+    /*color: #1e88e5;*/
+    margin: auto;
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 2px 2px 2px 2px;
     z-index: 0;
+    transition: width 0.15s ease-in-out;
 }
 #rm-details-tab hr.underline-hr {
     height: 1px;
@@ -102,3 +107,71 @@
 #rm-details-tab .clickable-header:hover .btn-link {
     color: #ffffff;
 }
+
+#rm-details-tab .container {
+    color: #1e88e5;
+}
+
+#rm-details-tab .collapsible {
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 0.25s ease-in-out;
+}
+
+#rm-details-tab .active, .collapsible:hover {
+    /*background-color: #1e88e544;*/
+}
+
+#rm-details-tab .collapsible:hover hr.list-title {
+    height: 4px;
+    width: 70% !important;
+    opacity: 1;
+    border: 2px solid transparent;
+    border-radius: 2px 2px 2px 2px;
+    z-index: 0;
+}
+
+#rm-details-tab .collapsible:hover h6 {
+    width: 70% !important;
+    margin-left: calc(15%);;
+    transition: margin 0.15s ease-in-out;
+}
+
+#rm-details-tab .collapsible+.content {
+    /*padding: 0 18px;*/
+    height: 0px;
+    overflow: hidden;
+    /*background-color: #dbdbdb;*/
+}
+
+#rm-details-tab div {
+    transition: all 0.5s;
+}
+
+#rm-details-tab tr:nth-child(even) {
+    background-color: #bbbbbb;
+}
+
+#rm-details-tabt table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#rm-details-tab td, th {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#rm-details-tab .no-bullets {
+    list-style-type: none;
+    width: 100%;
+}    

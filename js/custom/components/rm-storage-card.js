@@ -7,6 +7,7 @@ import * as WebStorage from '../utils/webstorage.js';
 import * as httpservice from '../utils/httpservice.js';
 import * as rmprogressbar from './rm-progressbar.js';
 import { _rmsidebar } from './rm-sidebar.js';
+import { StorageReading } from '../models/storage.js';
 
 /**
  * Constante para acessar a StorageCard no DOM
@@ -19,14 +20,14 @@ export const _rmstoragecard = document.getElementById('rm-storage-card');
  * @constant {Object}
  * @property {boolean} loading=false Define se o StorageCard já finalizou o carregamento (true) ou não (false).
  * @property {boolean} disabled=true Define se o StorageCard está desativado (true) ou ativado (false).
- * @property {Storage} storagedevices=[]] Representa uma lista de Dispositivos de Armazenamento que o Card irá mostrar.
- * @property {StorageDeviceReading} storagedevicereadings=[]] Representa as Leituras atuais dos Dispositivos de Armazenamento
+ * @property {Storage} storages=[]] Representa uma lista de Dispositivos de Armazenamento que o Card irá mostrar.
+ * @property {StorageDeviceReading} storagereadings=[]] Representa as Leituras atuais dos Dispositivos de Armazenamento
  */
 const parameters = {
     loading: false,
     disabled: true,
-    storagedevices: [],
-    storagedevicereadings: [],
+    storages: [],
+    storagereadings: [],
 }
 
 /**
@@ -111,7 +112,7 @@ function updateParameters(parameter, value) {
  */
 function getStorage() {
     httpservice.GetComputer(WebStorage.getCurrentComputer()).then((response) => {
-        updateParameters('storagedevices', response.storages);
+        updateParameters('storages', response.storages);
 
         createDeviceCards();
     });
@@ -123,16 +124,18 @@ function getStorage() {
 function createDeviceCards() {
     let progressbarcontainer = _rmstoragecard.querySelector('#rm-progressbar');
     progressbarcontainer.innerHTML = '';
-    parameters.storagedevices.forEach((storage, index) => {
-        storage.read = 100;
-        storage.write = 100;
+    parameters.storages.forEach((storage, index) => {
         let template = `
-            <div class="card border ${(index + 1) === parameters.storagedevices.length ? 'mt-1 mb-3' : 'my-1'}">
+            <div class="card border ${(index + 1) === parameters.storages.length ? 'mt-1 mb-3' : 'my-1'}">
                 <div class="card-body">
-                    ${rmprogressbar.create(storage.name, `storage-${storage.number}`, storage.disks, 0, '%', 0, 100)}
+                    ${rmprogressbar.create(storage.name, `storage-${storage.index}`, '', 0, '%', 0, 100)}
                     <small class="d-flex justify-content-between w-100 mt-2">
-                        ${rmprogressbar.create('Leitura', `read-${storage.number}`, '', -1, '', 0, storage.read, 'w-100 pr-3 storage')}
-                        ${rmprogressbar.create('Escrita', `write-${storage.number}`, '', -1, '', 0, storage.write, 'w-100 pl-3 storage')}
+                        <div class="my-auto text-left py-2"><a id="disks-${storage.index}"> Discos Lógicos: ${storage.disks} </a></div>
+                        <div class="my-auto text-left py-2"><a id="temperature-${storage.index}"> Temperatura - </a></div>
+                    </small>
+                    <small class="d-flex justify-content-between w-100 mt-2">
+                        ${rmprogressbar.create('Leitura', `read-${storage.index}`, '', -1, 'MB/s', 0, storage.read, 'w-100 pr-3 storage')}
+                        ${rmprogressbar.create('Escrita', `write-${storage.index}`, '', -1, 'MB/s', 0, storage.write, 'w-100 pl-3 storage')}
                     </small>
                 </div>
             </div>
@@ -146,13 +149,34 @@ function createDeviceCards() {
  */
 function getStorageDeviceReading() {  
     httpservice.GetStorageDeviceReading(WebStorage.getCurrentComputer(), parameters.currentid).then((response) => {
-        updateParameters('storagedevicereadings', response);
+        let obj = JSON.parse(response);
+        let readings = [];
+        obj.forEach((reading) => {
+            readings.push(new StorageReading(reading.uuid, reading.readings));
+        });
+        updateParameters('storagereadings', readings);
         
-        if (parameters.storagedevicereadings instanceof Array) {
-            parameters.storagedevicereadings.forEach((storagedevicereading, number) => {
-                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${number}`), storagedevicereading.load, 0, 100, '%');
-                rmprogressbar.update(_rmstoragecard.querySelector(`#read-${number}`), storagedevicereading.read / 1024, 0, 0, 'GB/s');
-                rmprogressbar.update(_rmstoragecard.querySelector(`#write-${number}`), storagedevicereading.write / 1024, 0, 0, 'GB/s');
+        if (parameters.storagereadings instanceof Array) {
+            parameters.storagereadings.forEach((storagereading) => {
+                let storage = parameters.storages.filter((s) => {
+                    return s.uuid == storagereading.uuid
+                })[0];
+                rmprogressbar.update(_rmstoragecard.querySelector(`#storage-${storage.index}`), storagereading.readings.load, 0, 100, '%');
+                rmprogressbar.update(
+                    _rmstoragecard.querySelector(`#read-${storage.index}`), 
+                    storagereading.readings.read, 
+                    0, 
+                    parameters.storages.filter(s => s.index == storage.index)[0].read, 
+                    'MB/s'
+                );
+                rmprogressbar.update(
+                    _rmstoragecard.querySelector(`#write-${storage.index}`), 
+                    storagereading.readings.write, 
+                    0, 
+                    parameters.storages.filter(s => s.index == storage.index)[0].write, 
+                    'MB/s'
+                );
+                _rmstoragecard.querySelector(`#temperature-${storage.index}`).innerHTML = `Temperatura: ${storagereading.readings.temperature} °C`;
             });
         }
 

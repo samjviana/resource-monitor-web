@@ -8,8 +8,8 @@ import * as httpservice from '../utils/httpservice.js';
 import * as rmprogressbar from './rm-progressbar.js';
 import * as Tools from '../utils/tools.js';
 import { _rmsidebar } from './rm-sidebar.js';
-import { Cpu } from "../models/cpu.js";
-import { CpuReading } from '../models/cpureading.js';
+import { Processor } from "../models/processor.js";
+import { ProcessorReading } from "../models/processor.js";
 
 /**
  * Constante para acessar a CpuCard no DOM
@@ -23,15 +23,15 @@ export const _rmcpucard = document.getElementById('rm-cpu-card');
  * @property {boolean} loading=false Define se o CpuCard já finalizou o carregamento (true) ou não (false).
  * @property {boolean} disabled=true Define se o CpuCard está desativado (true) ou ativado (false).
  * @property {number} currentid=0 Define o ID do Processador selecionado atualmente.
- * @property {Cpu[]} cpus=[]] Representa uma lista de CPUs que o Card poderá mostrar.
- * @property {CpuReading} cpureading=CpuReading.empty() Representa a Leitura atual da CPU selecionada
+ * @property {Processor[]} processors=[]] Representa uma lista de CPUs que o Card poderá mostrar.
+ * @property {ProcessorReading} cpureading=CpuReading.empty() Representa a Leitura atual da CPU selecionada
  */
 const parameters = {
     loading: false,
     disabled: true,
     currentid: 0,
-    cpus: [],
-    cpureading: CpuReading.empty(),
+    processors: [],
+    cpureading: ProcessorReading.empty(),
 }
 
 /**
@@ -139,7 +139,7 @@ function computerChanged(event) {
  
     getCpu();
 
-    bgInterval = setInterval(getCpuReading, 1000);
+    bgInterval = setInterval(getCpuReading, 2000);
 }
 
 /**
@@ -179,9 +179,9 @@ function updateParameters(parameter, value) {
  */
 function getCpu() {
     httpservice.GetComputer(WebStorage.getCurrentComputer()).then((response) => {
-        updateParameters('cpus', response.cpus);
+        updateParameters('processors', response.processors);
 
-        if (parameters.cpus.length > 1) {
+        if (parameters.processors.length > 1) {
             function template(cpu) {
                 return `
                 <div id="cpuid-${cpu.id}" class="dropdown-item">
@@ -191,7 +191,7 @@ function getCpu() {
             }
 
             _rmcpucard.querySelector('.dropdown-menu').innerHTML = '';
-            parameters.cpus.forEach((cpu) => {
+            parameters.processors.forEach((cpu) => {
                 _rmcpucard.querySelector('.dropdown-menu').innerHTML += template(cpu);
             });
             _rmcpucard.querySelectorAll('.dropdown-item').forEach((element) => {
@@ -205,7 +205,7 @@ function getCpu() {
         }
 
         let progressbarcontainer = _rmcpucard.querySelector('#rm-progressbar');
-        let cpu = parameters.cpus[parameters.currentid];
+        let cpu = parameters.processors[parameters.currentid];
         progressbarcontainer.innerHTML = '';
         progressbarcontainer.innerHTML += rmprogressbar.create('Temperatura', 'temperature', '', 0, '°C', 0, cpu.temperature);
         progressbarcontainer.innerHTML += rmprogressbar.create('Clock', 'clock', '', 0, 'MHz', 0, cpu.clock);
@@ -223,16 +223,16 @@ function getCpuReading() {
     httpservice.GetCpuReading(WebStorage.getCurrentComputer(), parameters.currentid).then((response) => {
         updateParameters('cpureading', response);
 
-        chart.update(parameters.cpureading.load);
-        _rmcpucard.querySelector('#chart h5').innerHTML = parameters.cpureading.load;
+        chart.update(parameters.cpureading.readings.load);
+        _rmcpucard.querySelector('#chart h5').innerHTML = parameters.cpureading.readings.load;
 
-        let cpu = parameters.cpus[parameters.currentid];
-        rmprogressbar.update(_rmcpucard.querySelector('#temperature'), parameters.cpureading.temperature, 0, cpu.temperature, '°C');
-        rmprogressbar.update(_rmcpucard.querySelector('#clock'), parameters.cpureading.clock, 0, cpu.clock, 'MHz');
-        rmprogressbar.update(_rmcpucard.querySelector('#power'), parameters.cpureading.power, 0, cpu.power, 'W');
+        let cpu = parameters.processors[parameters.currentid];
+        rmprogressbar.update(_rmcpucard.querySelector('#temperature'), parameters.cpureading.readings.temperature, 0, cpu.temperature, '°C');
+        rmprogressbar.update(_rmcpucard.querySelector('#clock'), parameters.cpureading.readings.clock, 0, cpu.clock, 'MHz');
+        rmprogressbar.update(_rmcpucard.querySelector('#power'), parameters.cpureading.readings.power, 0, cpu.power, 'W');
 
         if(parameters.loading) {
-            chart.update(parameters.cpureading.load);
+            chart.update(parameters.cpureading.readings.load);
             updateParameters('loading', false);
             CustomEvents.triggerEvent(_rmcpucard, CustomEvents.componentloaded, parameters);
             toggleCard();

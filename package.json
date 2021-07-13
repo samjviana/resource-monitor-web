@@ -11,7 +11,7 @@
   "author": "Samuel Juliano",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.6.1"
   },
   "directories": {
     "doc": "docs"

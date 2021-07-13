@@ -1,3 +1,4 @@
+
 /**
  * Representa um Dispositivo de Armazenamento
  * @class
@@ -5,20 +6,18 @@
 export class Storage {
     /**
      * @constructor
-     * @param {number} id - ID do Dispositivo de Armazenamento
+     * @param {number} index - Index do Dispositivo de Armazenamento
+     * @param {string} uuid - UUID do Dispositivo de Armazenamento 
      * @param {string} name - Nome do Dispositivo de Armazenamento
-     * @param {string} disk - Disco representado pelo Dispositivo de Armazenamento
+     * @param {string} disks - Disco representado pelo Dispositivo de Armazenamento
      * @param {number} size - Tamanho do Dispositivo de Armazenamento
-     * @param {number} read - Taxa de Leitura Máxima do Dispositivo de Armazenamento
-     * @param {number} write - Taxa de Escrita Máxima do Dispositivo de Armazenamento
      */
-    constructor(id, name, disk, size, read, write) {
+    constructor(id, uuid, name, disks, size) {
         this.id = id;
+        this.uuid = uuid;
         this.name = name;
-        this.disk = disk;
+        this.disks = disks;
         this.size = size;
-        this.read = read;
-        this.write = write;
     }
 
     /**
@@ -26,6 +25,30 @@ export class Storage {
      * @returns {Storage}
      */
     static empty() {
-        return new Storage(0, '', '', 0, 0, 0);
+        return new Storage(0, '', '', '', 0);
+    }
+}
+
+/**
+ * Representa a Leitura de um Dispositivo de Armazenamento
+ * @class
+ */
+ export class StorageReading {
+    /**
+     * @constructor
+     * @param {string} uuid - UUID do Dispositivo de Armazenamento 
+     * @param {object} readings - Sensores do Dispositivo de Armazenamento
+     */
+    constructor(uuid, readings) {
+        this.uuid = uuid;
+        this.readings = readings;
+    }
+
+    /**
+     * Cria e Retorna uma nova instância de uma Leitura "vazia"
+     * @returns {StorageReading}
+     */
+    static empty() {
+        return new StorageReading('', { temperature: 0, load: 0});
     }
 }

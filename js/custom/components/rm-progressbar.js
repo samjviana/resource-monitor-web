@@ -8,6 +8,7 @@ import * as Tools from '../utils/tools.js';
 /**
  * Cria um novo ProgressBar com os parâmetros passados
  * @param {string} label - Representa o Rótulo da Barra de Progresso
+ * @param {string} id - Representa o ID da Barra de Progresso
  * @param {string} title - Representa o Título Central da Barra de Progresso
  * @param {number} value - Representa o Valor Atual da Barra de Progresso
  * @param {string} unit - Representa a Unidade de Medida da Barra de Progresso
@@ -45,8 +46,11 @@ export function update(element, value, min, max, unit) {
     if (value === undefined || value < 0) {
         element.querySelector('#value').innerHTML = '-';
     }
+    else if (value === 0 && max === 0) {
+        element.querySelector('#value').innerHTML = '-';
+    }
     else {
-        element.querySelector('#value').innerHTML = `${value.toFixed(1)} ${unit}`;
+        element.querySelector('#value').innerHTML = `${value.toFixed(2)} ${unit}`;
     }
 
     if (value < 0) {
@@ -85,6 +89,6 @@ function getStyle(value, min, max) {
 function getNeutralStyle() {
     return `
         width: 100%;
-        background-color: #1266f1
+        background-color: #CACACA
     `;
 }

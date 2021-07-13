@@ -163,12 +163,17 @@ function getComputers() {
             computerlist.innerHTML = '';
             updateParameters('loaded', false);
         }
+        if (response === null || response === undefined) {
+            updateParameters('computers', []);
+        }
+        else {
+            updateParameters('computers', response);
+        }
 
-        updateParameters('computers', response);
 
         if (WebStorage.getCurrentComputer() !== null && parameters.currentcomputer === null) {
             updateParameters('currentcomputer', parameters.computers.find((element) => {
-                return element.name === WebStorage.getCurrentComputer();
+                return element.uuid === WebStorage.getCurrentComputer();
             }));
             CustomEvents.triggerEvent(_rmsidebar, CustomEvents.computerchanged, {currentcomputer: parameters.currentcomputer});
         }
@@ -195,7 +200,7 @@ function setCurrentComputer(event) {
         return;
     }
 
-    WebStorage.setCurrentComputer(computer.name);
+    WebStorage.setCurrentComputer(computer.uuid);
 
     if (parameters.currentcomputer !== null) {
         document.getElementById(parameters.currentcomputer.name).classList.remove('active');

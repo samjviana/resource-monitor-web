@@ -1,6 +1,3 @@
-import { Computer } from "../models/computer.js";
-import { CpuReading } from "../models/cpureading.js";
-
 /**
  * Serviço HTTP responsável por se comunicar com o servidor para coletar informações dos computadores.
  * @module HttpService 
@@ -10,7 +7,8 @@ import { CpuReading } from "../models/cpureading.js";
  * Endereço do servidor que fornecerá as informações dos computadores
  * @constant {string} 
  */
-const url = 'http://samjviana.ddns.net:9002';
+const url = 'http://localhost:9001';
+//const url = 'http://18.229.117.148:9001';
 
 /**
  * Opções que serão usadas na requisição HTTP
@@ -28,52 +26,52 @@ const options = {
  * @returns {Computer[]} Lista de computadores
  */
 export function GetComputers() {
-    return fetch(`${url}/computador&get&all`, options).then(response => response.json()).catch(error => console.error('GetComputers ERROR: ', error));
+    return fetch(`${url}/computer`, options).then(response => response.json()).catch(error => console.error('GetComputers ERROR: ', error));
 }
 
 /**
  * Solicita ao servidor dados de um computador passado como parâmetro
- * @param {string} computername - Nome do computador
+ * @param {string} computeruuid - UUID do computador
  * @returns {Computer} Objeto contendo informações completas do Computador
  */
-export function GetComputer(computername) {
-    return fetch(`${url}/computador/${computername}`, options).then(response => response.json()).catch(error => console.error('GetComputer ERROR: ', error));
+export function GetComputer(computeruuid) {
+    return fetch(`${url}/computer/uuid=${computeruuid}`, options).then(response => response.json()).catch(error => console.error('GetComputer ERROR: ', error));
 }
 
 /**
  * Solicita ao servidor dados de leitura de uma CPU de um computador passado como parâmetro
- * @param {string} computername - Nome do computador
- * @param {number} cpuid - ID da CPU
+ * @param {string} computeruuid - Nome do computador
+ * @param {number} cpuidx - ID da CPU
  * @returns {CpuReading} Objeto contendo informações de leitura da CPU
  */
-export function GetCpuReading(computername, cpuid) {
-    return fetch(`${url}/leitura/${computername}/cpu/${cpuid}`, options).then(response => response.json()).catch(error => console.error('GetCpuReading ERROR: ', error));
+export function GetCpuReading(computeruuid, cpuidx) {
+    return fetch(`${url}/readings/uuid=${computeruuid}/cpu/${cpuidx}`, options).then(response => response.json()).catch(error => console.error('GetCpuReading ERROR: ', error));
 }
 
 /**
  * Solicita ao servidor dados de leitura de uma GPU de um Computador passado como parâmetro
- * @param {string} computername - Nome do Computador
- * @param {number} gpuid - ID da GPU
+ * @param {string} computeruuid - Nome do Computador
+ * @param {number} gpuidx - ID da GPU
  * @returns {GpuReading} Objeto contendo informações de leitura da GPU
  */
-export function GetGpuReading(computername, gpuid) {
-    return fetch(`${url}/leitura/${computername}/gpu/${gpuid}`, options).then(response => response.json()).catch(error => console.error('GetGpuReading ERROR: ', error));
+export function GetGpuReading(computeruuid, gpuidx) {
+    return fetch(`${url}/readings/uuid=${computeruuid}/gpu/${gpuidx}`, options).then(response => response.json()).catch(error => console.error('GetGpuReading ERROR: ', error));
 }
 
 /**
  * Solicita ao servidor dados de leitura de uma RAM de um Computador passado como parâmetro
- * @param {string} computername - Nome do Computador
+ * @param {string} computeruuid - Nome do Computador
  * @returns {RamReading} Objeto contendo informações de leitura da RAM
  */
-export function GetRamReading(computername) {
-    return fetch(`${url}/leitura/${computername}/ram`, options).then(response => response.json()).catch(error => console.error('GetRamReading ERROR: ', error));
+export function GetRamReading(computeruuid) {
+    return fetch(`${url}/readings/uuid=${computeruuid}/ram`, options).then(response => response.json()).catch(error => console.error('GetRamReading ERROR: ', error));
 }
 
 /**
  * Solicita ao servidor dados de leitura dos Dispositivos de Armazenamento de um Computador passado como parâmetro
- * @param {string} computername - Nome do Computador
+ * @param {string} computeruuid - Nome do Computador
  * @returns {StorageDeviceReading} Objeto contendo informações de leitura dos Dispositivos de Armazenamento
  */
-export function GetStorageDeviceReading(computername) {
-    return fetch(`${url}/leitura/${computername}/hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageDeviceReading ERROR: ', error));
+export function GetStorageDeviceReading(computeruuid) {
+    return fetch(`${url}/readings/uuid=${computeruuid}/hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageDeviceReading ERROR: ', error));
 }
