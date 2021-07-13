@@ -7,8 +7,8 @@
  * Endereço do servidor que fornecerá as informações dos computadores
  * @constant {string} 
  */
-const url = 'http://localhost:9001';
-//const url = 'http://18.229.117.148:9001';
+//const url = 'http://localhost:9001';
+const url = 'http://18.229.117.148:9001';
 
 /**
  * Opções que serão usadas na requisição HTTP
