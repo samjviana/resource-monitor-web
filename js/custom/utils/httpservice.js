@@ -8,7 +8,11 @@
  * @constant {string} 
  */
 //const url = 'http://localhost:9001';
+<<<<<<< HEAD
 const url = 'http://52.67.242.62:9001';
+=======
+const url = 'http://18.229.117.148:9001';
+>>>>>>> d8745e76b98e18da6c906a9d5cf591073c7185b7
 
 /**
  * Opções que serão usadas na requisição HTTP
