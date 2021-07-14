@@ -7,8 +7,8 @@
  * Endereço do servidor que fornecerá as informações dos computadores
  * @constant {string} 
  */
-const url = 'http://localhost:9001';
-//const url = 'http://18.229.117.148:9001';
+//const url = 'http://localhost:9001';
+const url = 'http://52.67.242.62:9001';
 
 /**
  * Opções que serão usadas na requisição HTTP
@@ -72,6 +72,17 @@ export function GetRamReading(computeruuid) {
  * @param {string} computeruuid - Nome do Computador
  * @returns {StorageDeviceReading} Objeto contendo informações de leitura dos Dispositivos de Armazenamento
  */
-export function GetStorageDeviceReading(computeruuid) {
+ export function GetStorageDeviceReading(computeruuid) {
     return fetch(`${url}/readings/uuid=${computeruuid}/hdd`, options).then(response => response.json()).catch(error => console.error('GetStorageDeviceReading ERROR: ', error));
+}
+
+/**
+ * Solicita ao servidor dados de leitura de um Computador num intervalo de tempo
+ * @param {string} computeruuid - Nome do Computador
+ * @param {Date} start - Data e Horário de Início
+ * @param {Date} end - Data e Horário Finais
+ * @returns {Reading[]} Objeto contendo informações de leitura do Computador
+ */
+export function GetComputerReadingRange(computeruuid, start, end) {
+    return fetch(`${url}/readings/uuid=${computeruuid}&start=${start}&end=${end}`, options).then(response => response.json()).catch(error => console.error('GetComputerReadingRange ERROR: ', error));
 }

@@ -114,7 +114,7 @@ function updateParameters(parameter, value) {
 
     parameters[parameter] = value;
 
-    CustomEvents.triggerEvent(_rmcpucard, CustomEvents.paramchanged);
+    CustomEvents.triggerEvent(_rmdetailstab, CustomEvents.paramchanged);
 }
 
 /**
@@ -131,7 +131,6 @@ function dataLoadListener(event) {
             break;
     }
 
-    console.log(parameters.computer);
     if (parameters.computer !== null) {
         buildComputerDetails();
         buildCpuDetails();

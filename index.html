@@ -80,9 +80,9 @@
                     <div id="rm-tabs" class="w-100">
                         <div class="w-100 tabs tabs-3 mt-4">
                             <h2 class="text-center pt-4"> - </h2>
-                            <input type="radio" id="tab1" name="tab-control" checked>
-                            <input type="radio" id="tab2" name="tab-control">
-                            <input type="radio" id="tab3" name="tab-control">
+                            <input type="radio" id="tab1" name="tab-control">
+                            <input type="radio" id="tab2" name="tab-control" >
+                            <input type="radio" id="tab3" name="tab-control" checked>
                             <ul class="tab-selector">
                                 <li title="Dashboard">
                                     <label for="tab1" role="button">
@@ -411,6 +411,67 @@
                                     </div>
                                     <!-- /rm-details-tab -->
                                 </section>
+                                <section class="graficos">
+                                    <div class="container" style="max-width: 1500px;">
+                                        <!-- rm-graphics-tab -->
+                                        <div id="rm-graphics-tab">
+                                            <!-- rm-cpu-charts-card -->
+                                            <div id="rm-cpu-charts-card">
+                                                <div class="col text-center my-3">
+                                                    <div id="data" class="card shadow-1-strong">
+                                                        <div class="card-header">
+                                                            <div class="d-flex justify-content-between dropdown">
+                                                                <h5 id="cpuid" class="my-auto"> Processador </h5>
+                                                                <button type="button" class="dropdown-hide px-0"
+                                                                    id="selcpu" data-toggle="dropdown" aria-expanded="false"
+                                                                >
+                                                                </button>
+                                                                <div class="dropdown-menu shadow-1-strong">
+                                                                </div>
+                                                                <h5 id="name" class="my-1"> - </h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="container h-100 px-0">
+                                                                <div class="row row-cols-1 row-cols-md-2">
+                                                                    <div class="px-2">
+                                                                        <div class="border rounded pt-3 my-2">
+                                                                            <div id="cpu-load-chart">
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    <div class="px-2">
+                                                                        <div class="border rounded pt-3 my-2">
+                                                                            <div id="cpu-temperature-chart">
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    <div class="px-2">
+                                                                        <div class="border rounded pt-3 my-2">
+                                                                            <div id="cpu-clock-chart">
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    <div class="px-2">
+                                                                        <div class="border rounded pt-3 my-2">
+                                                                            <div id="cpu-power-chart">
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="loader" class="card align-middle justify-content-center align-items-center shadow-1-strong d-none py-5 my-5">
+                                                        <i class="fas fa-sync fa-2x fa-spin"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /rm-cpu-charts-card -->
+                                        </div>
+                                        <!-- /rm-graphics-tab -->
+                                    </div>
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -430,7 +491,8 @@
 <script type="text/javascript" src="js/easypiechart.min.js"></script>
 <!-- Require lib -->
 <script type="text/javascript" src="js/require.min.js"></script>
-<!-- Custom scripts -->
-<script type="module" src="js/custom/main.js"></script>
+<!-- Custom scripts 
+<script type="module" src="js/custom/main.js"></script> -->
+<script type="text/javascript" src="dist/bundle.js"></script>
 
 </html>
