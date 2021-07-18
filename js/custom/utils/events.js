@@ -37,7 +37,13 @@ export const cpuchanged = 'cpuchanged';
  * Usado para detectar quando a GPU selecionada é alterada
  * @constant {string}
  */
-export const gpuchanged = 'gpuchanged';
+ export const gpuchanged = 'gpuchanged';
+
+ /**
+ * Usado para detectar quando o Dispositivo de Armazenamento selecionado é alterado
+ * @constant {string}
+ */
+export const storagechanged = 'storagechanged';
 
 /**
  * Dispara um evento personalizado

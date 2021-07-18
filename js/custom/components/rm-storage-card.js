@@ -156,7 +156,6 @@ function getStorageDeviceReading() {
             readings.push(new StorageReading(reading.uuid, reading.readings));
         });
         updateParameters('storagereadings', readings);
-        console.log(parameters.storagereadings);
         
         if (parameters.storagereadings instanceof Array) {
             parameters.storagereadings.forEach((storagereading) => {

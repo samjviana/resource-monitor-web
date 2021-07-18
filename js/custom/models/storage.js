@@ -49,6 +49,6 @@ export class Storage {
      * @returns {StorageReading}
      */
     static empty() {
-        return new StorageReading('', { temperature: 0, load: 0});
+        return new StorageReading('', { temperature: 0, load: 0, read: 0, write: 0 });
     }
 }

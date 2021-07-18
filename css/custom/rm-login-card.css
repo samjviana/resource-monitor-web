@@ -1,0 +1,40 @@
+#rm-login-card div.card {
+    min-width: 400px;
+}
+
+#rm-login-card .form-check-input.is-valid~.form-check-label,
+#rm-login-card .was-validated .form-check-input:valid~.form-check-label {
+    color: #4f4f4f !important;
+}
+
+#rm-login-card .form-check-input.is-valid,
+#rm-login-card  .was-validated .form-check-input:valid {
+    border-color: #4f4f4f !important;
+}
+
+#rm-login-card .was-validated :valid.form-check-input~.form-check-label {
+    margin-bottom: 0;
+}
+
+#rm-login-card .form-outline {
+    transition: all 0.35s ease;
+}
+
+#rm-login-card .validation-field {
+    margin-bottom: 30px;
+}
+
+#rm-login-card .form-check-input.is-valid:checked,
+#rm-login-card .was-validated .form-check-input:valid:checked {
+    background-color: #1266f1 !important;
+}
+
+#rm-login-card .was-validated :valid.form-check-input:checked:focus:before,
+#rm-login-card .was-validated :valid.form-check-input:focus:before {
+    box-shadow: 0 0 0 13px rgb(0 0 0 / 60%) !important;
+    -webkit-box-shadow: 0 0 0 13px rgb(0 0 0 / 60%) !important;
+}
+
+input[type="text"],[type="password"] {
+    
+}

@@ -140,7 +140,24 @@ function computerChanged(event) {
  
     getGpu();
 
-    bgInterval = setInterval(getGpuReading, 2000);
+    //if (parameters.gpus.length != 0) {
+        bgInterval = setInterval(getGpuReading, 2000);
+    /*}
+    else {
+        chart.update(0);
+        let progressbarcontainer = _rmgpucard.querySelector('#rm-progressbar');
+        progressbarcontainer.innerHTML = '';
+        progressbarcontainer.innerHTML += rmprogressbar.create('Energia', 'power', '', -1, '', 0, 0);
+        progressbarcontainer.innerHTML += rmprogressbar.create('Temperatura', 'temperature', '', -1, '', 0, 0);
+        progressbarcontainer.innerHTML += rmprogressbar.create('Clock Núcleo', 'coreclock', '', -1, '', 0, 0);
+        progressbarcontainer.innerHTML += rmprogressbar.create('Clock Memória', 'memoryclock', '', -1, '', 0, 0);
+        _rmgpucard.querySelector('#name').innerHTML = '-';
+
+        updateParameters('loading', false);
+        updateParameters('disabled', true);
+        CustomEvents.triggerEvent(_rmgpucard, CustomEvents.componentloaded, parameters);
+        toggleCard();
+    }*/
 }
 
 /**

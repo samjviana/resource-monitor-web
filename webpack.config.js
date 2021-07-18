@@ -1,10 +1,14 @@
 const path = require('path');
   
 module.exports = {
-    entry: './js/custom/main.js',
+    entry: {
+        computers: './js/custom/computers.js',
+        login: './js/custom/login.js',
+        index: './js/custom/index.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     mode: 'development',
     watch: true

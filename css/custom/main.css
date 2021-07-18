@@ -7,7 +7,8 @@
 @import "rm-storage-card.css";
 @import "rm-progressbar.css";
 @import "rm-details-tab.css";
-@import "rm-cpu-charts-card.css";
+@import "rm-charts-card.css";
+@import "rm-login-card.css";
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {

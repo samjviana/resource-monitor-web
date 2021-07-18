@@ -3,16 +3,14 @@
  * @module HttpService 
  */
 
+import { sha256 } from "js-sha256";
+
 /**
  * Endereço do servidor que fornecerá as informações dos computadores
  * @constant {string} 
  */
 //const url = 'http://localhost:9001';
-<<<<<<< HEAD
 const url = 'http://52.67.242.62:9001';
-=======
-const url = 'http://18.229.117.148:9001';
->>>>>>> d8745e76b98e18da6c906a9d5cf591073c7185b7
 
 /**
  * Opções que serão usadas na requisição HTTP
@@ -87,6 +85,25 @@ export function GetRamReading(computeruuid) {
  * @param {Date} end - Data e Horário Finais
  * @returns {Reading[]} Objeto contendo informações de leitura do Computador
  */
-export function GetComputerReadingRange(computeruuid, start, end) {
+ export function GetComputerReadingRange(computeruuid, start, end) {
     return fetch(`${url}/readings/uuid=${computeruuid}&start=${start}&end=${end}`, options).then(response => response.json()).catch(error => console.error('GetComputerReadingRange ERROR: ', error));
+}
+
+/**
+ * Solicita ao servidor dados de leitura de um Computador num intervalo de tempo
+ * @param {User} user - Usuário que está tentando se logar
+ * @returns {object} Objeto contendo resultados da tentativa de Logon
+ */
+export function DoLogin(user) {
+    var hash = sha256.create();
+    hash.update(user.password);
+    user.password = hash.hex();
+    return fetch(`${url}/login?username=${user.username}&password=${user.password}`, options).then(response => response.json()).catch(error => console.error('DoLogin ERROR: ', error));
+
+    /*let encoder = new TextEncoder();
+    return crypto.subtle.digest('SHA-256',  encoder.encode(user.password)).then(async (result) => {
+        let hashArray = Array.from(new Uint8Array(result));
+        user.password = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return fetch(`${url}/login?username=${user.username}&password=${user.password}`, options).then(response => response.json()).catch(error => console.error('DoLogin ERROR: ', error))
+    });*/
 }
