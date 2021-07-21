@@ -133,6 +133,7 @@ function dataLoadListener(event) {
 
     if (parameters.computer !== null) {
         buildComputerDetails();
+        buildOperatingSystemDetails();
         buildCpuDetails();
         buildGpuDetails();
         buildRamDetails();
@@ -153,7 +154,7 @@ function createInfoRow(label, value) {
 /**
  * Função que constroi a lista de detalhes do Computador e insere a lista no DOM
  */
-function buildComputerDetails() {
+ function buildComputerDetails() {
     let createLiElement = function(computer) {
         return `
             ${createInfoRow('Nome', computer.name)}
@@ -179,6 +180,36 @@ function buildComputerDetails() {
     let list = createLiElement(parameters.computer);
 
     _rmdetailstab.querySelector('#computer ul').innerHTML = list;
+}
+
+/**
+ * Função que constroi a lista de detalhes do Sistema Operacional e insere a lista no DOM
+ */
+function buildOperatingSystemDetails() {
+    let createLiElement = function(operatingsystem) {
+        console.log(operatingsystem);
+        return `
+            ${createInfoRow('Nome', operatingsystem.name)}
+            ${createInfoRow('Versão', operatingsystem.version)}
+            ${createInfoRow('Build', operatingsystem.build)}
+            ${createInfoRow('Fabricante', operatingsystem.manufacturer)}
+            ${createInfoRow('Arquitetura', operatingsystem.architecture)}
+            ${createInfoRow('Serial Key', operatingsystem.serialKey)}
+            ${createInfoRow('Serial Number', operatingsystem.serialNumber)}
+            ${createInfoRow('Status', operatingsystem.status)}
+            ${createInfoRow('Data de Instalação', operatingsystem.installDate)}
+            ${createInfoRow('Linguagem', operatingsystem.language)}
+            ${createInfoRow('País', operatingsystem.country)}
+            ${createInfoRow('Cógigo de Página', operatingsystem.codePage)}
+            ${createInfoRow('Dispositivo de Boot', operatingsystem.bootDevice)}
+            ${createInfoRow('Partição do Sistema', operatingsystem.systemPartition)}
+            ${createInfoRow('Caminho de Instalação', operatingsystem.installPath)}
+        `;
+    };
+
+    let list = createLiElement(parameters.computer.operatingSystem);
+
+    _rmdetailstab.querySelector('#operatingsystem ul').innerHTML = list;
 }
 
 /**

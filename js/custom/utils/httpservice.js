@@ -9,8 +9,8 @@ import { sha256 } from "js-sha256";
  * Endereço do servidor que fornecerá as informações dos computadores
  * @constant {string} 
  */
-//const url = 'http://localhost:9001';
-const url = 'http://52.67.242.62:9001';
+const url = 'http://localhost:9001';
+//const url = 'http://52.67.242.62:9001';
 
 /**
  * Opções que serão usadas na requisição HTTP
